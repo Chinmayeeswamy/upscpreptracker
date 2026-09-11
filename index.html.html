@@ -1,0 +1,5530 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ 
+<title>UPSC Preparation Tracker</title> 
+ 
+<style> 
+ 
+/* ========================================================= 
+   GLOBAL 
+========================================================= */ 
+ 
+*{ 
+    box-sizing:border-box; 
+    margin:0; 
+    padding:0; 
+} 
+ 
+body{ 
+    font-family:Arial, Helvetica, sans-serif; 
+    background:#f6f8ff; 
+    color:#172033; 
+    min-height:100vh; 
+} 
+ 
+button, 
+input, 
+select, 
+textarea{ 
+    font-family:inherit; 
+} 
+ 
+button{ 
+    cursor:pointer; 
+} 
+ 
+ 
+/* ========================================================= 
+   HEADER 
+========================================================= */ 
+ 
+.header{ 
+    background: 
+        linear-gradient( 
+            135deg, 
+            #ffffff 0%, 
+            #eef4ff 45%, 
+            #f9efff 100% 
+        ); 
+ 
+    border-bottom:1px solid #dce4f5; 
+ 
+    padding:22px 5%; 
+ 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+ 
+    flex-wrap:wrap; 
+    gap:18px; 
+ 
+    position:sticky; 
+    top:0; 
+    z-index:100; 
+} 
+ 
+.logo{ 
+    font-size:26px; 
+    font-weight:900; 
+    letter-spacing:1px; 
+    color:#172033; 
+} 
+ 
+.logo span{ 
+    color:#6366f1; 
+} 
+ 
+.subtitle{ 
+    color:#64748b; 
+    font-size:13px; 
+    margin-top:5px; 
+} 
+ 
+ 
+/* ========================================================= 
+   XP 
+========================================================= */ 
+ 
+.level-box{ 
+    background:white; 
+    border:1px solid #dce4f5; 
+ 
+    padding:12px 18px; 
+ 
+    border-radius:14px; 
+ 
+    min-width:220px; 
+ 
+    box-shadow:0 5px 20px rgba(70,90,150,.08); 
+} 
+ 
+.level-title{ 
+    display:flex; 
+    justify-content:space-between; 
+ 
+    font-size:13px; 
+ 
+    margin-bottom:8px; 
+} 
+ 
+.xp-bar{ 
+    height:9px; 
+ 
+    background:#e9edf7; 
+ 
+    border-radius:20px; 
+ 
+    overflow:hidden; 
+} 
+ 
+.xp-fill{ 
+    height:100%; 
+    width:0%; 
+ 
+    background: 
+        linear-gradient( 
+            90deg, 
+            #6366f1, 
+            #8b5cf6, 
+            #ec4899 
+        ); 
+ 
+    transition:.5s; 
+} 
+ 
+ 
+/* ========================================================= 
+   CONTAINER 
+========================================================= */ 
+ 
+.container{ 
+    width:90%; 
+    max-width:1400px; 
+ 
+    margin:25px auto 50px; 
+} 
+ 
+ 
+/* ========================================================= 
+   MAIN NAVIGATION 
+========================================================= */ 
+ 
+.page-nav{ 
+    display:grid; 
+ 
+    grid-template-columns: 
+        repeat(6,1fr); 
+ 
+    gap:10px; 
+ 
+    margin-bottom:22px; 
+} 
+ 
+.page-btn{ 
+    border:none; 
+ 
+    padding:15px 10px; 
+ 
+    border-radius:14px; 
+ 
+    background:white; 
+ 
+    color:#64748b; 
+ 
+    font-weight:800; 
+ 
+    font-size:13px; 
+ 
+    border:1px solid #dce4f5; 
+ 
+    box-shadow:0 5px 15px rgba(70,90,150,.06); 
+ 
+    transition:.2s; 
+} 
+ 
+.page-btn:hover{ 
+    transform:translateY(-2px); 
+    border-color:#818cf8; 
+} 
+ 
+.page-btn.active{ 
+    background: 
+        linear-gradient( 
+            135deg, 
+            #6366f1, 
+            #8b5cf6 
+        ); 
+ 
+    color:white; 
+ 
+    border-color:transparent; 
+ 
+    box-shadow: 
+        0 8px 20px rgba(99,102,241,.25); 
+} 
+ 
+ 
+/* ========================================================= 
+   PAGES 
+========================================================= */ 
+ 
+.page{ 
+    display:none; 
+} 
+ 
+.page.active{ 
+    display:block; 
+} 
+ 
+ 
+/* ========================================================= 
+   COMMON STATS 
+========================================================= */ 
+ 
+.stats{ 
+    display:grid; 
+ 
+    grid-template-columns: 
+        repeat(4,1fr); 
+ 
+    gap:15px; 
+ 
+    margin-bottom:20px; 
+} 
+ 
+.stat{ 
+    background:white; 
+ 
+    border:1px solid #e1e7f3; 
+ 
+    border-radius:16px; 
+ 
+    padding:20px; 
+ 
+    text-align:center; 
+ 
+    box-shadow: 
+        0 6px 20px rgba(60,70,120,.06); 
+ 
+    position:relative; 
+    overflow:hidden; 
+} 
+ 
+.stat:nth-child(1){ 
+    border-top:4px solid #22c55e; 
+} 
+ 
+.stat:nth-child(2){ 
+    border-top:4px solid #fb7185; 
+} 
+ 
+.stat:nth-child(3){ 
+    border-top:4px solid #f59e0b; 
+} 
+ 
+.stat:nth-child(4){ 
+    border-top:4px solid #6366f1; 
+} 
+ 
+.stat-number{ 
+    font-size:30px; 
+ 
+    font-weight:900; 
+ 
+    margin-bottom:5px; 
+} 
+ 
+.stat-label{ 
+    color:#64748b; 
+ 
+    font-size:11px; 
+ 
+    text-transform:uppercase; 
+ 
+    letter-spacing:1px; 
+} 
+ 
+.green{color:#16a34a;} 
+.yellow{color:#d97706;} 
+.red{color:#e11d48;} 
+.blue{color:#4f46e5;} 
+ 
+ 
+/* ========================================================= 
+   COMMON CARDS 
+========================================================= */ 
+ 
+.card, 
+.diary, 
+.week-card, 
+.month-card, 
+.month-calendar, 
+.month-target-card{ 
+    background:white; 
+ 
+    border:1px solid #dfe5f1; 
+ 
+    border-radius:16px; 
+ 
+    padding:22px; 
+ 
+    box-shadow: 
+        0 6px 20px rgba(60,70,120,.05); 
+} 
+ 
+.section-title{ 
+    font-size:19px; 
+ 
+    font-weight:900; 
+ 
+    margin-bottom:15px; 
+} 
+ 
+ 
+/* ========================================================= 
+   DAILY DATE 
+========================================================= */ 
+ 
+.date-panel{ 
+    background:white; 
+ 
+    border:1px solid #dfe5f1; 
+ 
+    border-radius:16px; 
+ 
+    padding:18px; 
+ 
+    display:flex; 
+ 
+    align-items:center; 
+ 
+    justify-content:space-between; 
+ 
+    gap:15px; 
+ 
+    margin-bottom:20px; 
+ 
+    box-shadow: 
+        0 6px 20px rgba(60,70,120,.05); 
+} 
+ 
+.date-display{ 
+    text-align:center; 
+    flex:1; 
+} 
+ 
+.date-display h1{ 
+    font-size:24px; 
+} 
+ 
+.date-display p{ 
+    color:#64748b; 
+    margin-top:5px; 
+} 
+ 
+.day-badge{ 
+    display:inline-block; 
+ 
+    margin-top:8px; 
+ 
+    padding:5px 10px; 
+ 
+    border-radius:20px; 
+ 
+    background:#ede9fe; 
+ 
+    color:#6d28d9; 
+ 
+    font-size:11px; 
+ 
+    font-weight:800; 
+} 
+ 
+.nav-btn{ 
+    border:none; 
+ 
+    background:#eef2ff; 
+ 
+    color:#4338ca; 
+ 
+    padding:12px 18px; 
+ 
+    border-radius:10px; 
+ 
+    font-weight:bold; 
+} 
+ 
+.nav-btn:hover{ 
+    background:#e0e7ff; 
+} 
+ 
+ 
+/* ========================================================= 
+   DAILY PROGRESS 
+========================================================= */ 
+ 
+.progress-panel{ 
+    background:white; 
+ 
+    border:1px solid #dfe5f1; 
+ 
+    border-radius:16px; 
+ 
+    padding:20px; 
+ 
+    margin-bottom:20px; 
+ 
+    box-shadow: 
+        0 6px 20px rgba(60,70,120,.05); 
+} 
+ 
+.progress-title{ 
+    display:flex; 
+ 
+    justify-content:space-between; 
+ 
+    margin-bottom:10px; 
+ 
+    font-weight:bold; 
+} 
+ 
+.progress-bar{ 
+    height:18px; 
+ 
+    background:#edf0f7; 
+ 
+    border-radius:20px; 
+ 
+    overflow:hidden; 
+} 
+ 
+.progress-fill{ 
+    height:100%; 
+ 
+    width:0%; 
+ 
+    background: 
+        linear-gradient( 
+            90deg, 
+            #22c55e, 
+            #84cc16, 
+            #facc15 
+        ); 
+ 
+    transition:.5s; 
+} 
+ 
+ 
+/* ========================================================= 
+   DAILY GRID 
+========================================================= */ 
+ 
+.grid{ 
+    display:grid; 
+ 
+    grid-template-columns: 
+        2fr 1fr; 
+ 
+    gap:20px; 
+} 
+ 
+ 
+/* ========================================================= 
+   MISSIONS 
+========================================================= */ 
+ 
+.mission{ 
+    border:1px solid #e4e8f1; 
+ 
+    background:#fafbff; 
+ 
+    padding:14px; 
+ 
+    border-radius:12px; 
+ 
+    margin-bottom:10px; 
+ 
+    display:flex; 
+ 
+    align-items:center; 
+ 
+    gap:12px; 
+ 
+    transition:.2s; 
+} 
+ 
+.mission:hover{ 
+    transform:translateX(3px); 
+ 
+    border-color:#818cf8; 
+ 
+    background:#f7f7ff; 
+} 
+ 
+.mission.completed{ 
+    opacity:.55; 
+} 
+ 
+.mission.completed .mission-text{ 
+    text-decoration:line-through; 
+ 
+    color:#64748b; 
+} 
+ 
+.check{ 
+    width:23px; 
+    height:23px; 
+ 
+    border-radius:7px; 
+ 
+    border:2px solid #cbd5e1; 
+ 
+    cursor:pointer; 
+ 
+    flex-shrink:0; 
+ 
+    display:flex; 
+ 
+    align-items:center; 
+ 
+    justify-content:center; 
+} 
+ 
+.completed .check{ 
+    background:#22c55e; 
+ 
+    border-color:#22c55e; 
+} 
+ 
+.completed .check::after{ 
+    content:"✓"; 
+ 
+    color:white; 
+ 
+    font-weight:bold; 
+} 
+ 
+.mission-text{ 
+    flex:1; 
+} 
+ 
+.tag{ 
+    font-size:10px; 
+ 
+    background:#ede9fe; 
+ 
+    color:#6d28d9; 
+ 
+    padding:5px 8px; 
+ 
+    border-radius:6px; 
+ 
+    font-weight:bold; 
+} 
+ 
+.delete{ 
+    color:#94a3b8; 
+ 
+    cursor:pointer; 
+ 
+    padding:5px; 
+ 
+    font-size:18px; 
+} 
+ 
+.delete:hover{ 
+    color:#ef4444; 
+} 
+ 
+ 
+/* ========================================================= 
+   INPUTS 
+========================================================= */ 
+ 
+.add-box, 
+.target-input-row{ 
+    display:flex; 
+ 
+    gap:8px; 
+ 
+    margin-top:15px; 
+} 
+ 
+input, 
+select, 
+textarea{ 
+    background:white; 
+ 
+    border:1px solid #cfd7e7; 
+ 
+    color:#172033; 
+ 
+    padding:12px; 
+ 
+    border-radius:9px; 
+ 
+    outline:none; 
+} 
+ 
+input:focus, 
+select:focus, 
+textarea:focus{ 
+    border-color:#6366f1; 
+ 
+    box-shadow: 
+        0 0 0 3px rgba(99,102,241,.10); 
+} 
+ 
+.add-box input{ 
+    flex:1; 
+} 
+ 
+.add-box select{ 
+    width:150px; 
+} 
+ 
+.add-btn{ 
+    background: 
+        linear-gradient( 
+            135deg, 
+            #22c55e, 
+            #16a34a 
+        ); 
+ 
+    color:white; 
+ 
+    border:none; 
+ 
+    padding:12px 18px; 
+ 
+    border-radius:9px; 
+ 
+    font-weight:bold; 
+} 
+ 
+ 
+/* ========================================================= 
+   SIDE PANEL 
+========================================================= */ 
+ 
+.side-panel{ 
+    display:flex; 
+ 
+    flex-direction:column; 
+ 
+    gap:20px; 
+} 
+ 
+.streak{ 
+    text-align:center; 
+ 
+    background: 
+        linear-gradient( 
+            135deg, 
+            #fff7ed, 
+            #ffffff 
+        ); 
+} 
+ 
+.streak-number{ 
+    font-size:55px; 
+ 
+    font-weight:900; 
+ 
+    color:#f59e0b; 
+} 
+ 
+.motivation{ 
+    color:#64748b; 
+ 
+    font-size:13px; 
+ 
+    line-height:1.5; 
+ 
+    text-align:center; 
+ 
+    margin-top:8px; 
+} 
+ 
+ 
+/* ========================================================= 
+   BACKLOG 
+========================================================= */ 
+ 
+.mini-progress{ 
+    margin-top:15px; 
+} 
+ 
+.mini-progress-label{ 
+    display:flex; 
+ 
+    justify-content:space-between; 
+ 
+    font-size:12px; 
+ 
+    margin-bottom:5px; 
+} 
+ 
+.backlog-bar{ 
+    height:10px; 
+ 
+    background:#f1f5f9; 
+ 
+    border-radius:10px; 
+ 
+    overflow:hidden; 
+} 
+ 
+.backlog-fill{ 
+    height:100%; 
+ 
+    background: 
+        linear-gradient( 
+            90deg, 
+            #fb7185, 
+            #ef4444 
+        ); 
+ 
+    width:0%; 
+} 
+ 
+ 
+/* ========================================================= 
+   COMMAND BUTTONS 
+========================================================= */ 
+ 
+.action-btn{ 
+    width:100%; 
+ 
+    border:none; 
+ 
+    padding:12px; 
+ 
+    margin-top:8px; 
+ 
+    border-radius:9px; 
+ 
+    cursor:pointer; 
+ 
+    font-weight:bold; 
+ 
+    background:#eef2ff; 
+ 
+    color:#4338ca; 
+} 
+ 
+.action-btn:hover{ 
+    background:#e0e7ff; 
+} 
+ 
+.reset{ 
+    color:#e11d48; 
+ 
+    background:#fff1f2; 
+} 
+ 
+ 
+/* ========================================================= 
+   QUOTE 
+========================================================= */ 
+ 
+.quote{ 
+    border-left:4px solid #8b5cf6; 
+ 
+    padding-left:12px; 
+ 
+    color:#475569; 
+ 
+    font-size:14px; 
+ 
+    line-height:1.5; 
+} 
+ 
+ 
+/* ========================================================= 
+   REVIEW 
+========================================================= */ 
+ 
+.review-card{ 
+    margin-top:20px; 
+ 
+    background: 
+        linear-gradient( 
+            135deg, 
+            #fff7ed, 
+            #fefce8 
+        ); 
+ 
+    border:1px solid #fde68a; 
+ 
+    border-radius:16px; 
+ 
+    padding:20px; 
+} 
+ 
+.stars{ 
+    display:flex; 
+ 
+    gap:8px; 
+ 
+    margin:10px 0; 
+} 
+ 
+.star{ 
+    font-size:32px; 
+ 
+    color:#cbd5e1; 
+ 
+    cursor:pointer; 
+ 
+    transition:.15s; 
+} 
+ 
+.star:hover{ 
+    transform:scale(1.15); 
+} 
+ 
+.star.active{ 
+    color:#f59e0b; 
+} 
+ 
+.review-text{ 
+    width:100%; 
+ 
+    min-height:75px; 
+ 
+    resize:vertical; 
+ 
+    margin-top:8px; 
+} 
+ 
+.save-review{ 
+    margin-top:10px; 
+ 
+    background:#f59e0b; 
+ 
+    color:white; 
+ 
+    border:none; 
+ 
+    padding:10px 15px; 
+ 
+    border-radius:8px; 
+ 
+    font-weight:bold; 
+} 
+ 
+ 
+/* ========================================================= 
+   PERIOD HEADER 
+========================================================= */ 
+ 
+.period-header{ 
+    background: 
+        linear-gradient( 
+            135deg, 
+            #eef2ff, 
+            #f5f3ff, 
+            #fdf2f8 
+        ); 
+ 
+    border:1px solid #ddd6fe; 
+ 
+    border-radius:16px; 
+ 
+    padding:22px; 
+ 
+    margin-bottom:20px; 
+ 
+    display:flex; 
+ 
+    justify-content:space-between; 
+ 
+    align-items:center; 
+ 
+    gap:15px; 
+} 
+ 
+.period-title h1{ 
+    font-size:25px; 
+} 
+ 
+.period-title p{ 
+    color:#64748b; 
+ 
+    margin-top:5px; 
+} 
+ 
+.period-controls{ 
+    display:flex; 
+ 
+    gap:8px; 
+} 
+ 
+.period-controls button{ 
+    border:none; 
+ 
+    background:white; 
+ 
+    border:1px solid #d8def0; 
+ 
+    padding:10px 15px; 
+ 
+    border-radius:8px; 
+ 
+    color:#4338ca; 
+ 
+    font-weight:bold; 
+} 
+ 
+ 
+/* ========================================================= 
+   WEEK DAYS 
+========================================================= */ 
+ 
+.week-days{ 
+    display:grid; 
+ 
+    grid-template-columns: 
+        repeat(7,1fr); 
+ 
+    gap:10px; 
+ 
+    margin-bottom:20px; 
+} 
+ 
+.week-day{ 
+    background:white; 
+ 
+    border:1px solid #dfe5f1; 
+ 
+    border-radius:12px; 
+ 
+    padding:13px 8px; 
+ 
+    text-align:center; 
+ 
+    min-height:95px; 
+ 
+    box-shadow: 
+        0 4px 12px rgba(60,70,120,.04); 
+} 
+ 
+.week-day-name{ 
+    font-size:11px; 
+ 
+    color:#64748b; 
+ 
+    font-weight:bold; 
+} 
+ 
+.week-date{ 
+    font-size:18px; 
+ 
+    font-weight:900; 
+ 
+    margin:7px 0; 
+} 
+ 
+.week-status{ 
+    font-size:11px; 
+ 
+    font-weight:bold; 
+} 
+ 
+.done-day{ 
+    background:#f0fdf4; 
+ 
+    border-color:#86efac; 
+} 
+ 
+.done-day .week-status{ 
+    color:#16a34a; 
+} 
+ 
+.today-day{ 
+    border:2px solid #6366f1; 
+} 
+ 
+ 
+/* ========================================================= 
+   PERIOD TARGETS 
+========================================================= */ 
+ 
+.target-input-row input{ 
+    flex:1; 
+} 
+ 
+.target-list{ 
+    display:flex; 
+ 
+    flex-direction:column; 
+ 
+    gap:10px; 
+} 
+ 
+.period-target{ 
+    display:flex; 
+ 
+    align-items:center; 
+ 
+    gap:10px; 
+ 
+    padding:13px; 
+ 
+    border-radius:10px; 
+ 
+    background:#f8fafc; 
+ 
+    border:1px solid #e2e8f0; 
+} 
+ 
+.period-target.done{ 
+    opacity:.55; 
+} 
+ 
+.period-target.done .target-text{ 
+    text-decoration:line-through; 
+} 
+ 
+.period-check{ 
+    width:22px; 
+    height:22px; 
+ 
+    border:2px solid #cbd5e1; 
+ 
+    border-radius:6px; 
+ 
+    cursor:pointer; 
+ 
+    flex-shrink:0; 
+} 
+ 
+.period-target.done .period-check{ 
+    background:#22c55e; 
+ 
+    border-color:#22c55e; 
+} 
+ 
+.period-target.done .period-check::after{ 
+    content:"✓"; 
+ 
+    color:white; 
+ 
+    display:flex; 
+ 
+    justify-content:center; 
+ 
+    align-items:center; 
+ 
+    height:100%; 
+ 
+    font-size:13px; 
+} 
+ 
+.target-text{ 
+    flex:1; 
+} 
+ 
+.period-delete{ 
+    color:#94a3b8; 
+ 
+    cursor:pointer; 
+ 
+    font-size:18px; 
+} 
+ 
+ 
+/* ========================================================= 
+   MONTH 
+========================================================= */ 
+ 
+.month-layout{ 
+    display:grid; 
+ 
+    grid-template-columns: 
+        1fr 1.4fr; 
+ 
+    gap:20px; 
+} 
+ 
+.calendar-grid{ 
+    display:grid; 
+ 
+    grid-template-columns: 
+        repeat(7,1fr); 
+ 
+    gap:6px; 
+} 
+ 
+.calendar-heading{ 
+    text-align:center; 
+ 
+    font-size:10px; 
+ 
+    color:#64748b; 
+ 
+    font-weight:bold; 
+ 
+    padding:7px 0; 
+} 
+ 
+.calendar-day{ 
+    min-height:48px; 
+ 
+    background:#f8fafc; 
+ 
+    border:1px solid #edf0f5; 
+ 
+    border-radius:8px; 
+ 
+    display:flex; 
+ 
+    align-items:center; 
+ 
+    justify-content:center; 
+ 
+    font-size:12px; 
+ 
+    cursor:pointer; 
+ 
+    position:relative; 
+} 
+ 
+.calendar-day:hover{ 
+    border-color:#818cf8; 
+ 
+    background:#eef2ff; 
+} 
+ 
+.calendar-day.today{ 
+    border:2px solid #6366f1; 
+ 
+    font-weight:900; 
+} 
+ 
+.calendar-day.worked{ 
+    background:#dcfce7; 
+ 
+    border-color:#86efac; 
+ 
+    color:#166534; 
+ 
+    font-weight:bold; 
+} 
+ 
+.calendar-day.empty{ 
+    background:transparent; 
+ 
+    border:none; 
+ 
+    cursor:default; 
+} 
+ 
+ 
+/* ========================================================= 
+   PERIOD PROGRESS 
+========================================================= */ 
+ 
+.month-progress{ 
+    margin-bottom:20px; 
+} 
+ 
+.month-progress-top{ 
+    display:flex; 
+ 
+    justify-content:space-between; 
+ 
+    font-weight:bold; 
+ 
+    margin-bottom:8px; 
+} 
+ 
+.month-progress-bar{ 
+    height:15px; 
+ 
+    background:#eef2f7; 
+ 
+    border-radius:20px; 
+ 
+    overflow:hidden; 
+} 
+ 
+.month-progress-fill{ 
+    height:100%; 
+ 
+    width:0%; 
+ 
+    background: 
+        linear-gradient( 
+            90deg, 
+            #06b6d4, 
+            #6366f1, 
+            #a855f7 
+        ); 
+ 
+    transition:.5s; 
+} 
+ 
+ 
+/* ========================================================= 
+   SYLLABUS TRACKER 
+========================================================= */ 
+ 
+.tracker-dashboard{ 
+    display:grid; 
+ 
+    grid-template-columns: 
+        2fr 1fr 1fr; 
+ 
+    gap:16px; 
+ 
+    margin-bottom:22px; 
+} 
+ 
+.tracker-stat{ 
+    background:white; 
+ 
+    border:1px solid #e5e7eb; 
+ 
+    border-radius:16px; 
+ 
+    padding:20px; 
+ 
+    box-shadow: 
+        0 5px 18px rgba(23,32,51,.06); 
+} 
+ 
+.tracker-stat h3{ 
+    font-size:12px; 
+ 
+    color:#667085; 
+ 
+    margin-bottom:8px; 
+ 
+    text-transform:uppercase; 
+ 
+    letter-spacing:.5px; 
+} 
+ 
+.tracker-big{ 
+    font-size:32px; 
+ 
+    font-weight:900; 
+} 
+ 
+.tracker-progress{ 
+    height:13px; 
+ 
+    background:#edf0f5; 
+ 
+    border-radius:20px; 
+ 
+    overflow:hidden; 
+ 
+    margin-top:12px; 
+} 
+ 
+.tracker-progress-bar{ 
+    height:100%; 
+ 
+    width:0%; 
+ 
+    background: 
+        linear-gradient( 
+            90deg, 
+            #4f46e5, 
+            #ec4899 
+        ); 
+ 
+    transition:.4s; 
+} 
+ 
+.toolbar{ 
+    display:flex; 
+ 
+    gap:10px; 
+ 
+    flex-wrap:wrap; 
+ 
+    margin-bottom:20px; 
+} 
+ 
+.search{ 
+    flex:1; 
+ 
+    min-width:250px; 
+ 
+    border:1px solid #d7dbe5; 
+ 
+    border-radius:11px; 
+ 
+    padding:12px 15px; 
+ 
+    outline:none; 
+} 
+ 
+.search:focus{ 
+    border-color:#6366f1; 
+} 
+ 
+.action{ 
+    border:none; 
+ 
+    padding:11px 16px; 
+ 
+    border-radius:10px; 
+ 
+    font-weight:bold; 
+ 
+    cursor:pointer; 
+} 
+ 
+.complete{ 
+    background:#ecfdf3; 
+ 
+    color:#087443; 
+} 
+ 
+.reset-tracker{ 
+    background:#fff0f0; 
+ 
+    color:#c62828; 
+} 
+ 
+ 
+/* ========================================================= 
+   SUBJECT GRID 
+========================================================= */ 
+ 
+.subject-grid{ 
+    display:grid; 
+ 
+    grid-template-columns: 
+        repeat( 
+            auto-fit, 
+            minmax(340px,1fr) 
+        ); 
+ 
+    gap:18px; 
+} 
+ 
+.subject-card{ 
+    background:white; 
+ 
+    border:1px solid #e5e7eb; 
+ 
+    border-radius:18px; 
+ 
+    overflow:hidden; 
+ 
+    box-shadow: 
+        0 5px 18px rgba(23,32,51,.06); 
+} 
+ 
+.subject-header{ 
+    padding:18px; 
+ 
+    background: 
+        linear-gradient( 
+            135deg, 
+            #f7f8ff, 
+            #ffffff 
+        ); 
+ 
+    border-bottom:1px solid #edf0f4; 
+} 
+ 
+.subject-header h2{ 
+    font-size:18px; 
+ 
+    margin-bottom:7px; 
+} 
+ 
+.subject-meta{ 
+    color:#667085; 
+ 
+    font-size:13px; 
+} 
+ 
+.subject-progress{ 
+    height:8px; 
+ 
+    background:#eceef3; 
+ 
+    border-radius:20px; 
+ 
+    overflow:hidden; 
+ 
+    margin-top:12px; 
+} 
+ 
+.subject-progress span{ 
+    display:block; 
+ 
+    height:100%; 
+ 
+    width:0%; 
+ 
+    background:#10b981; 
+ 
+    transition:.3s; 
+} 
+ 
+.topic-list{ 
+    padding:8px 15px 15px; 
+ 
+    max-height:520px; 
+ 
+    overflow-y:auto; 
+} 
+ 
+.topic{ 
+    display:flex; 
+ 
+    align-items:flex-start; 
+ 
+    gap:10px; 
+ 
+    padding:11px 4px; 
+ 
+    border-bottom:1px solid #f0f1f4; 
+} 
+ 
+.topic:last-child{ 
+    border-bottom:none; 
+} 
+ 
+.topic input{ 
+    width:18px; 
+    height:18px; 
+ 
+    margin-top:2px; 
+ 
+    accent-color:#4f46e5; 
+ 
+    cursor:pointer; 
+} 
+ 
+.topic label{ 
+    font-size:14px; 
+ 
+    line-height:1.45; 
+ 
+    cursor:pointer; 
+} 
+ 
+.topic.completed label{ 
+    color:#98a2b3; 
+ 
+    text-decoration:line-through; 
+} 
+ 
+ 
+/* ========================================================= 
+   FOOTER 
+========================================================= */ 
+ 
+.footer{ 
+    text-align:center; 
+ 
+    color:#94a3b8; 
+ 
+    font-size:12px; 
+ 
+    padding:30px 0; 
+} 
+ 
+ 
+/* ========================================================= 
+   RESPONSIVE 
+========================================================= */ 
+ 
+@media(max-width:1100px){ 
+ 
+    .page-nav{ 
+        grid-template-columns: 
+            repeat(3,1fr); 
+    } 
+ 
+    .stats{ 
+        grid-template-columns: 
+            repeat(2,1fr); 
+    } 
+ 
+    .grid, 
+    .month-layout{ 
+        grid-template-columns:1fr; 
+    } 
+ 
+    .tracker-dashboard{ 
+        grid-template-columns: 
+            1fr 1fr; 
+    } 
+ 
+    .week-days{ 
+        grid-template-columns: 
+            repeat(4,1fr); 
+    } 
+ 
+} 
+ 
+ 
+@media(max-width:700px){ 
+ 
+    .page-nav{ 
+        grid-template-columns:1fr 1fr; 
+    } 
+ 
+    .stats{ 
+        grid-template-columns: 
+            repeat(2,1fr); 
+    } 
+ 
+    .tracker-dashboard{ 
+        grid-template-columns:1fr; 
+    } 
+ 
+    .subject-grid{ 
+        grid-template-columns:1fr; 
+    } 
+ 
+    .add-box, 
+    .target-input-row{ 
+        flex-wrap:wrap; 
+    } 
+ 
+    .add-box select{ 
+        width:100%; 
+    } 
+ 
+    .date-panel, 
+    .period-header{ 
+        flex-direction:column; 
+    } 
+ 
+    .week-days{ 
+        grid-template-columns: 
+            repeat(2,1fr); 
+    } 
+ 
+    .period-controls{ 
+        width:100%; 
+    } 
+ 
+    .period-controls button{ 
+        flex:1; 
+    } 
+ 
+    .logo{ 
+        font-size:21px; 
+    } 
+ 
+} 
+ 
+</style> 
+</head> 
+ 
+ 
+<body> 
+ 
+ 
+<!-- ========================================================= 
+     HEADER 
+========================================================= --> 
+ 
+<header class="header"> 
+ 
+<div> 
+ 
+    <div class="logo"> 
+        UPSC <span>PREPARATION TRACKER</span> 
+    </div> 
+ 
+    <div class="subtitle"> 
+        Plan. Execute. Track. Improve. 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="level-box"> 
+ 
+    <div class="level-title"> 
+ 
+        <span> 
+            LEVEL <b id="level">1</b> 
+        </span> 
+ 
+        <span id="xpText"> 
+            0 / 100 XP 
+        </span> 
+ 
+    </div> 
+ 
+    <div class="xp-bar"> 
+ 
+        <div 
+            class="xp-fill" 
+            id="xpFill"> 
+        </div> 
+ 
+    </div> 
+ 
+</div> 
+ 
+</header> 
+ 
+ 
+ 
+<div class="container"> 
+ 
+ 
+<!-- ========================================================= 
+     MAIN NAVIGATION 
+========================================================= --> 
+ 
+<div class="page-nav"> 
+ 
+    <button 
+        class="page-btn active" 
+        onclick="showPage('daily',this)"> 
+        DAILY PLANNER 
+    </button> 
+ 
+    <button 
+        class="page-btn" 
+        onclick="showPage('weekly',this)"> 
+        WEEKLY PLANNER 
+    </button> 
+ 
+    <button 
+        class="page-btn" 
+        onclick="showPage('monthly',this)"> 
+        MONTHLY PLANNER 
+    </button> 
+ 
+    <button 
+        class="page-btn" 
+        onclick="showPage('prelims',this)"> 
+        PRELIMS TRACKER 
+    </button> 
+ 
+    <button 
+        class="page-btn" 
+        onclick="showPage('mains',this)"> 
+        MAINS TRACKER 
+    </button> 
+ 
+    <button 
+        class="page-btn" 
+        onclick="showPage('sociology',this)"> 
+        SOCIOLOGY TRACKER 
+    </button> 
+ 
+</div> 
+ 
+ 
+<!-- ========================================================= 
+     DAILY PAGE 
+========================================================= --> 
+ 
+<section id="daily" class="page active"> 
+ 
+ 
+<div class="stats"> 
+ 
+    <div class="stat"> 
+ 
+        <div 
+            class="stat-number green" 
+            id="completedPercent"> 
+            0% 
+        </div> 
+ 
+        <div class="stat-label"> 
+            Work completed 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <div class="stat"> 
+ 
+        <div 
+            class="stat-number red" 
+            id="backlogPercent"> 
+            0% 
+        </div> 
+ 
+        <div class="stat-label"> 
+            Backlog 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <div class="stat"> 
+ 
+        <div 
+            class="stat-number yellow" 
+            id="streak"> 
+            0 
+        </div> 
+ 
+        <div class="stat-label"> 
+            Day streak 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <div class="stat"> 
+ 
+        <div 
+            class="stat-number blue" 
+            id="totalXP"> 
+            0 
+        </div> 
+ 
+        <div class="stat-label"> 
+            Total XP 
+        </div> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="date-panel"> 
+ 
+    <button 
+        class="nav-btn" 
+        onclick="changeDate(-1)"> 
+        ← Previous 
+    </button> 
+ 
+ 
+    <div class="date-display"> 
+ 
+        <h1 id="dateTitle"></h1> 
+ 
+        <p id="dayName"></p> 
+ 
+        <div 
+            class="day-badge" 
+            id="workedDayNumber"> 
+            DAY 1 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <button 
+        class="nav-btn" 
+        onclick="changeDate(1)"> 
+        Next → 
+    </button> 
+ 
+</div> 
+ 
+ 
+<div class="progress-panel"> 
+ 
+    <div class="progress-title"> 
+ 
+        <span> 
+            Today's Mission Progress 
+        </span> 
+ 
+        <span id="missionCount"> 
+            0 / 0 
+        </span> 
+ 
+    </div> 
+ 
+ 
+    <div class="progress-bar"> 
+ 
+        <div 
+            class="progress-fill" 
+            id="progressFill"> 
+        </div> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="grid"> 
+ 
+ 
+<div> 
+ 
+<div class="diary"> 
+ 
+    <div class="section-title"> 
+        Daily Mission Diary 
+    </div> 
+ 
+    <div id="missionList"></div> 
+ 
+ 
+    <div class="add-box"> 
+ 
+        <input 
+            id="targetInput" 
+            placeholder="Add today's target..." 
+            onkeydown="if(event.key==='Enter') addTarget()" 
+        > 
+ 
+ 
+        <select id="subjectInput"> 
+ 
+            <option>Prelims</option> 
+            <option>Polity</option> 
+            <option>Economy</option> 
+            <option>Geography</option> 
+            <option>Environment</option> 
+            <option>History</option> 
+            <option>Science & Tech</option> 
+            <option>Current Affairs</option> 
+            <option>GS1</option> 
+            <option>GS2</option> 
+            <option>GS3</option> 
+            <option>GS4</option> 
+            <option>Sociology</option> 
+            <option>Answer Writing</option> 
+            <option>Revision</option> 
+            <option>Test</option> 
+ 
+        </select> 
+ 
+ 
+        <button 
+            class="add-btn" 
+            onclick="addTarget()"> 
+            + ADD 
+        </button> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="review-card"> 
+ 
+    <div class="section-title"> 
+        Today's Review 
+    </div> 
+ 
+    <div> 
+        How well did you execute today's plan? 
+    </div> 
+ 
+ 
+    <div 
+        class="stars" 
+        id="stars"> 
+ 
+        <span 
+            class="star" 
+            onclick="setRating(1)"> 
+            ★ 
+        </span> 
+ 
+        <span 
+            class="star" 
+            onclick="setRating(2)"> 
+            ★ 
+        </span> 
+ 
+        <span 
+            class="star" 
+            onclick="setRating(3)"> 
+            ★ 
+        </span> 
+ 
+        <span 
+            class="star" 
+            onclick="setRating(4)"> 
+            ★ 
+        </span> 
+ 
+        <span 
+            class="star" 
+            onclick="setRating(5)"> 
+            ★ 
+        </span> 
+ 
+    </div> 
+ 
+ 
+    <textarea 
+        id="reviewText" 
+        class="review-text" 
+        placeholder="What went well? What should improve tomorrow?"> 
+    </textarea> 
+ 
+ 
+    <button 
+        class="save-review" 
+        onclick="saveReview()"> 
+        SAVE REVIEW 
+    </button> 
+ 
+</div> 
+ 
+</div> 
+ 
+ 
+<div class="side-panel"> 
+ 
+ 
+<div class="card streak"> 
+ 
+    <div class="section-title"> 
+        CONSISTENCY 
+    </div> 
+ 
+    <div 
+        class="streak-number" 
+        id="sideStreak"> 
+        0 
+    </div> 
+ 
+    <div> 
+        DAY STREAK 
+    </div> 
+ 
+    <div 
+        class="motivation" 
+        id="motivation"> 
+        Start your mission today. 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="card"> 
+ 
+    <div class="section-title"> 
+        BACKLOG 
+    </div> 
+ 
+ 
+    <div class="mini-progress"> 
+ 
+        <div class="mini-progress-label"> 
+ 
+            <span> 
+                Unfinished work 
+            </span> 
+ 
+            <span id="backlogSmall"> 
+                0% 
+            </span> 
+ 
+        </div> 
+ 
+ 
+        <div class="backlog-bar"> 
+ 
+            <div 
+                class="backlog-fill" 
+                id="backlogFill"> 
+            </div> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="card"> 
+ 
+    <div class="section-title"> 
+        COMMAND CENTER 
+    </div> 
+ 
+ 
+    <button 
+        class="action-btn" 
+        onclick="completeAll()"> 
+        ✓ Complete all 
+    </button> 
+ 
+ 
+    <button 
+        class="action-btn" 
+        onclick="addSampleTargets()"> 
+        + Add sample targets 
+    </button> 
+ 
+ 
+    <button 
+        class="action-btn reset" 
+        onclick="resetDay()"> 
+        ↻ Reset day 
+    </button> 
+ 
+</div> 
+ 
+ 
+<div class="card"> 
+ 
+    <div class="section-title"> 
+        MISSION RULE 
+    </div> 
+ 
+ 
+    <div class="quote"> 
+        "You don't need a perfect day. 
+        You need another completed day." 
+    </div> 
+ 
+</div> 
+ 
+ 
+</div> 
+ 
+</div> 
+ 
+</section> 
+ 
+ 
+<!-- ========================================================= 
+     WEEKLY PAGE 
+========================================================= --> 
+ 
+<section id="weekly" class="page"> 
+ 
+<div class="period-header"> 
+ 
+    <div class="period-title"> 
+ 
+        <h1> 
+            Weekly Mission 
+        </h1> 
+ 
+        <p id="weekRange"> 
+            This week's targets 
+        </p> 
+ 
+    </div> 
+ 
+ 
+    <div class="period-controls"> 
+ 
+        <button onclick="changeWeek(-1)"> 
+            ← Previous 
+        </button> 
+ 
+        <button onclick="goCurrentWeek()"> 
+            This Week 
+        </button> 
+ 
+        <button onclick="changeWeek(1)"> 
+            Next → 
+        </button> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div 
+    class="week-days" 
+    id="weekDays"> 
+</div> 
+ 
+ 
+<div class="week-card"> 
+ 
+    <div class="section-title"> 
+        Weekly Targets 
+    </div> 
+ 
+ 
+    <div class="month-progress"> 
+ 
+        <div class="month-progress-top"> 
+ 
+            <span> 
+                Weekly completion 
+            </span> 
+ 
+            <span id="weeklyProgressText"> 
+                0% 
+            </span> 
+ 
+        </div> 
+ 
+ 
+        <div class="month-progress-bar"> 
+ 
+            <div 
+                class="month-progress-fill" 
+                id="weeklyProgressFill"> 
+            </div> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <div class="target-input-row"> 
+ 
+        <input 
+            id="weeklyTargetInput" 
+            placeholder="Example: Finish Economy revision + 2 tests" 
+            onkeydown="if(event.key==='Enter') addWeeklyTarget()" 
+        > 
+ 
+        <button 
+            class="add-btn" 
+            onclick="addWeeklyTarget()"> 
+            + ADD TARGET 
+        </button> 
+ 
+    </div> 
+ 
+ 
+    <div 
+        class="target-list" 
+        id="weeklyTargetList"> 
+    </div> 
+ 
+</div> 
+ 
+</section> 
+ 
+ 
+<!-- ========================================================= 
+     MONTHLY PAGE 
+========================================================= --> 
+ 
+<section id="monthly" class="page"> 
+ 
+<div class="period-header"> 
+ 
+    <div class="period-title"> 
+ 
+        <h1> 
+            Monthly Mission 
+        </h1> 
+ 
+        <p id="monthTitle"> 
+            Monthly targets 
+        </p> 
+ 
+    </div> 
+ 
+ 
+    <div class="period-controls"> 
+ 
+        <button onclick="changeMonth(-1)"> 
+            ← Previous 
+        </button> 
+ 
+        <button onclick="goCurrentMonth()"> 
+            This Month 
+        </button> 
+ 
+        <button onclick="changeMonth(1)"> 
+            Next → 
+        </button> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="month-layout"> 
+ 
+ 
+<div class="month-calendar"> 
+ 
+    <div class="section-title"> 
+        Month Calendar 
+    </div> 
+ 
+    <div 
+        class="calendar-grid" 
+        id="calendarGrid"> 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="month-target-card"> 
+ 
+    <div class="section-title"> 
+        Monthly Targets 
+    </div> 
+ 
+ 
+    <div class="month-progress"> 
+ 
+        <div class="month-progress-top"> 
+ 
+            <span> 
+                Monthly completion 
+            </span> 
+ 
+            <span id="monthlyProgressText"> 
+                0% 
+            </span> 
+ 
+        </div> 
+ 
+ 
+        <div class="month-progress-bar"> 
+ 
+            <div 
+                class="month-progress-fill" 
+                id="monthlyProgressFill"> 
+            </div> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <div class="target-input-row"> 
+ 
+        <input 
+            id="monthlyTargetInput" 
+            placeholder="Example: Complete GS4 + 4 full tests" 
+            onkeydown="if(event.key==='Enter') addMonthlyTarget()" 
+        > 
+ 
+        <button 
+            class="add-btn" 
+            onclick="addMonthlyTarget()"> 
+            + ADD 
+        </button> 
+ 
+    </div> 
+ 
+ 
+    <div 
+        class="target-list" 
+        id="monthlyTargetList"> 
+    </div> 
+ 
+</div> 
+ 
+</div> 
+ 
+</section> 
+ 
+ 
+<!-- ========================================================= 
+     PRELIMS TRACKER 
+========================================================= --> 
+ 
+<section id="prelims" class="page"> 
+ 
+<div class="tracker-dashboard"> 
+ 
+<div class="tracker-stat"> 
+ 
+    <h3> 
+        Prelims Overall Progress 
+    </h3> 
+ 
+    <div 
+        class="tracker-big" 
+        id="prelimsPercent"> 
+        0% 
+    </div> 
+ 
+    <div class="tracker-progress"> 
+ 
+        <div 
+            class="tracker-progress-bar" 
+            id="prelimsProgress"> 
+        </div> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="tracker-stat"> 
+ 
+    <h3> 
+        Completed Topics 
+    </h3> 
+ 
+    <div 
+        class="tracker-big" 
+        id="prelimsCompleted"> 
+        0 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="tracker-stat"> 
+ 
+    <h3> 
+        Remaining Topics 
+    </h3> 
+ 
+    <div 
+        class="tracker-big" 
+        id="prelimsRemaining"> 
+        0 
+    </div> 
+ 
+</div> 
+ 
+</div> 
+ 
+ 
+<div class="toolbar"> 
+ 
+<input 
+    class="search" 
+    id="prelimsSearch" 
+    placeholder="Search Prelims topics..." 
+    oninput="filterTracker('prelims')"> 
+ 
+<button 
+    class="action complete" 
+    onclick="markAllTracker('prelims')"> 
+    Mark All Complete 
+</button> 
+ 
+<button 
+    class="action reset-tracker" 
+    onclick="resetTracker('prelims')"> 
+    Reset Prelims 
+</button> 
+ 
+</div> 
+ 
+ 
+<div 
+    id="prelimsGrid" 
+    class="subject-grid"> 
+</div> 
+ 
+</section> 
+ 
+ 
+<!-- ========================================================= 
+     MAINS TRACKER 
+========================================================= --> 
+ 
+<section id="mains" class="page"> 
+ 
+<div class="tracker-dashboard"> 
+ 
+<div class="tracker-stat"> 
+ 
+    <h3> 
+        Mains Overall Progress 
+    </h3> 
+ 
+    <div 
+        class="tracker-big" 
+        id="mainsPercent"> 
+        0% 
+    </div> 
+ 
+    <div class="tracker-progress"> 
+ 
+        <div 
+            class="tracker-progress-bar" 
+            id="mainsProgress"> 
+        </div> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="tracker-stat"> 
+ 
+    <h3> 
+        Completed Topics 
+    </h3> 
+ 
+    <div 
+        class="tracker-big" 
+        id="mainsCompleted"> 
+        0 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="tracker-stat"> 
+ 
+    <h3> 
+        Remaining Topics 
+    </h3> 
+ 
+    <div 
+        class="tracker-big" 
+        id="mainsRemaining"> 
+        0 
+    </div> 
+ 
+</div> 
+ 
+</div> 
+ 
+ 
+<div class="toolbar"> 
+ 
+<input 
+    class="search" 
+    id="mainsSearch" 
+    placeholder="Search Mains topics..." 
+    oninput="filterTracker('mains')"> 
+ 
+<button 
+    class="action complete" 
+    onclick="markAllTracker('mains')"> 
+    Mark All Complete 
+</button> 
+ 
+<button 
+    class="action reset-tracker" 
+    onclick="resetTracker('mains')"> 
+    Reset Mains 
+</button> 
+ 
+</div> 
+ 
+ 
+<div 
+    id="mainsGrid" 
+    class="subject-grid"> 
+</div> 
+ 
+</section> 
+ 
+ 
+<!-- ========================================================= 
+     SOCIOLOGY TRACKER 
+========================================================= --> 
+ 
+<section id="sociology" class="page"> 
+ 
+<div class="tracker-dashboard"> 
+ 
+<div class="tracker-stat"> 
+ 
+    <h3> 
+        Sociology Overall Progress 
+    </h3> 
+ 
+    <div 
+        class="tracker-big" 
+        id="sociologyPercent"> 
+        0% 
+    </div> 
+ 
+    <div class="tracker-progress"> 
+ 
+        <div 
+            class="tracker-progress-bar" 
+            id="sociologyProgress"> 
+        </div> 
+ 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="tracker-stat"> 
+ 
+    <h3> 
+        Completed Topics 
+    </h3> 
+ 
+    <div 
+        class="tracker-big" 
+        id="sociologyCompleted"> 
+        0 
+    </div> 
+ 
+</div> 
+ 
+ 
+<div class="tracker-stat"> 
+ 
+    <h3> 
+        Remaining Topics 
+    </h3> 
+ 
+    <div 
+        class="tracker-big" 
+        id="sociologyRemaining"> 
+        0 
+    </div> 
+ 
+</div> 
+ 
+</div> 
+ 
+ 
+<div class="toolbar"> 
+ 
+<input 
+    class="search" 
+    id="sociologySearch" 
+    placeholder="Search Sociology topics..." 
+    oninput="filterTracker('sociology')"> 
+ 
+<button 
+    class="action complete" 
+    onclick="markAllTracker('sociology')"> 
+    Mark All Complete 
+</button> 
+ 
+<button 
+    class="action reset-tracker" 
+    onclick="resetTracker('sociology')"> 
+    Reset Sociology 
+</button> 
+ 
+</div> 
+ 
+ 
+<div 
+    id="sociologyGrid" 
+    class="subject-grid"> 
+</div> 
+ 
+</section> 
+ 
+ 
+<div class="footer"> 
+ 
+    UPSC Preparation Tracker • 
+    Plan → Execute → Track → Improve 
+ 
+</div> 
+ 
+ 
+</div> 
+ 
+ 
+<script> 
+ 
+/* ========================================================= 
+   DAILY DATA 
+========================================================= */ 
+ 
+let currentDate = new Date(); 
+ 
+let currentWeekDate = new Date(); 
+ 
+let currentMonthDate = new Date(); 
+ 
+ 
+let dailyData = 
+    JSON.parse( 
+        localStorage.getItem("UPSC_DAILY_DATA") 
+    ) || {}; 
+ 
+ 
+let weeklyData = 
+    JSON.parse( 
+        localStorage.getItem("UPSC_WEEKLY_DATA") 
+    ) || {}; 
+ 
+ 
+let monthlyData = 
+    JSON.parse( 
+        localStorage.getItem("UPSC_MONTHLY_DATA") 
+    ) || {}; 
+ 
+ 
+let reviews = 
+    JSON.parse( 
+        localStorage.getItem("UPSC_REVIEWS") 
+    ) || {}; 
+ 
+ 
+let totalXP = 
+    Number( 
+        localStorage.getItem("UPSC_TOTAL_XP") 
+    ) || 0; 
+ 
+ 
+let selectedRating = 0; 
+ 
+ 
+/* ========================================================= 
+   DATE HELPERS 
+========================================================= */ 
+ 
+function dateKey(date){ 
+ 
+    let y = date.getFullYear(); 
+ 
+    let m = 
+        String( 
+            date.getMonth()+1 
+        ).padStart(2,"0"); 
+ 
+    let d = 
+        String( 
+            date.getDate() 
+        ).padStart(2,"0"); 
+ 
+    return `${y}-${m}-${d}`; 
+} 
+ 
+ 
+function formatDate(date){ 
+ 
+    return date.toLocaleDateString( 
+        "en-IN", 
+        { 
+            day:"numeric", 
+            month:"long", 
+            year:"numeric" 
+        } 
+    ); 
+} 
+ 
+ 
+function formatShortDate(date){ 
+ 
+    return date.toLocaleDateString( 
+        "en-IN", 
+        { 
+            day:"numeric", 
+            month:"short", 
+            year:"numeric" 
+        } 
+    ); 
+} 
+ 
+ 
+function cloneDate(date){ 
+ 
+    return new Date( 
+        date.getTime() 
+    ); 
+} 
+ 
+ 
+/* ========================================================= 
+   PAGE NAVIGATION 
+========================================================= */ 
+ 
+function showPage(pageId,button){ 
+ 
+    document 
+        .querySelectorAll(".page") 
+        .forEach(page=>{ 
+            page.classList.remove("active"); 
+        }); 
+ 
+ 
+    document 
+        .getElementById(pageId) 
+        .classList.add("active"); 
+ 
+ 
+    document 
+        .querySelectorAll(".page-btn") 
+        .forEach(btn=>{ 
+            btn.classList.remove("active"); 
+        }); 
+ 
+ 
+    button.classList.add("active"); 
+ 
+ 
+    if(pageId==="weekly"){ 
+        renderWeekly(); 
+    } 
+ 
+    if(pageId==="monthly"){ 
+        renderMonthly(); 
+    } 
+ 
+    if(pageId==="prelims"){ 
+        renderTracker("prelims"); 
+    } 
+ 
+    if(pageId==="mains"){ 
+        renderTracker("mains"); 
+    } 
+ 
+    if(pageId==="sociology"){ 
+        renderTracker("sociology"); 
+    } 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   DAILY MISSIONS 
+========================================================= */ 
+ 
+function getMissions(){ 
+ 
+    let key = 
+        dateKey(currentDate); 
+ 
+    if(!dailyData[key]){ 
+        dailyData[key]=[]; 
+    } 
+ 
+    return dailyData[key]; 
+} 
+ 
+ 
+function renderDate(){ 
+ 
+    document.getElementById( 
+        "dateTitle" 
+    ).innerText = 
+        formatDate(currentDate); 
+ 
+ 
+    document.getElementById( 
+        "dayName" 
+    ).innerText = 
+        currentDate.toLocaleDateString( 
+            "en-IN", 
+            {weekday:"long"} 
+        ); 
+ 
+ 
+    updateWorkedDayNumber(); 
+ 
+    renderMissions(); 
+ 
+    loadReview(); 
+ 
+} 
+ 
+ 
+function renderMissions(){ 
+ 
+    let list = 
+        document.getElementById( 
+            "missionList" 
+        ); 
+ 
+ 
+    list.innerHTML=""; 
+ 
+ 
+    let missions = 
+        getMissions(); 
+ 
+ 
+    if(missions.length===0){ 
+ 
+        list.innerHTML=` 
+        <div style=" 
+            text-align:center; 
+            padding:25px; 
+            color:#94a3b8; 
+            background:#f8fafc; 
+            border-radius:12px; 
+            border:1px dashed #cbd5e1; 
+        "> 
+            No targets yet.<br> 
+            Add your first mission below. 
+        </div> 
+        `; 
+ 
+    } 
+ 
+ 
+    missions.forEach( 
+        (mission,index)=>{ 
+ 
+            let div = 
+                document.createElement("div"); 
+ 
+ 
+            div.className = 
+                "mission " + 
+                ( 
+                    mission.done 
+                    ? "completed" 
+                    : "" 
+                ); 
+ 
+ 
+            div.innerHTML=` 
+ 
+                <div 
+                    class="check" 
+                    onclick="toggleMission(${index})"> 
+                </div> 
+ 
+                <div class="mission-text"> 
+                    ${escapeHTML(mission.text)} 
+                </div> 
+ 
+                <div class="tag"> 
+                    ${escapeHTML(mission.subject)} 
+                </div> 
+ 
+                <div 
+                    class="delete" 
+                    onclick="deleteMission(${index})"> 
+                    × 
+                </div> 
+            `; 
+ 
+ 
+            list.appendChild(div); 
+ 
+        } 
+    ); 
+ 
+ 
+    updateDailyProgress(); 
+ 
+} 
+ 
+ 
+function addTarget(){ 
+ 
+    let input = 
+        document.getElementById( 
+            "targetInput" 
+        ); 
+ 
+ 
+    let subject = 
+        document.getElementById( 
+            "subjectInput" 
+        ).value; 
+ 
+ 
+    let text = 
+        input.value.trim(); 
+ 
+ 
+    if(!text)return; 
+ 
+ 
+    getMissions().push({ 
+ 
+        text:text, 
+ 
+        subject:subject, 
+ 
+        done:false 
+ 
+    }); 
+ 
+ 
+    input.value=""; 
+ 
+ 
+    saveAll(); 
+ 
+    renderMissions(); 
+ 
+} 
+ 
+ 
+function toggleMission(index){ 
+ 
+    let mission = 
+        getMissions()[index]; 
+ 
+ 
+    mission.done = 
+        !mission.done; 
+ 
+ 
+    if(mission.done){ 
+ 
+        totalXP+=10; 
+ 
+    }else{ 
+ 
+        totalXP = 
+            Math.max( 
+                0, 
+                totalXP-10 
+            ); 
+ 
+    } 
+ 
+ 
+    saveAll(); 
+ 
+    renderMissions(); 
+ 
+} 
+ 
+ 
+function deleteMission(index){ 
+ 
+    let mission = 
+        getMissions()[index]; 
+ 
+ 
+    if(mission.done){ 
+ 
+        totalXP = 
+            Math.max( 
+                0, 
+                totalXP-10 
+            ); 
+ 
+    } 
+ 
+ 
+    getMissions().splice(index,1); 
+ 
+ 
+    saveAll(); 
+ 
+    renderMissions(); 
+ 
+} 
+ 
+ 
+function updateDailyProgress(){ 
+ 
+    let missions = 
+        getMissions(); 
+ 
+ 
+    let total = 
+        missions.length; 
+ 
+ 
+    let completed = 
+        missions.filter( 
+            m=>m.done 
+        ).length; 
+ 
+ 
+    let percentage = 
+        total===0 
+        ? 0 
+        : Math.round( 
+            completed/total*100 
+        ); 
+ 
+ 
+    let backlog = 
+        total===0 
+        ? 0 
+        : 100-percentage; 
+ 
+ 
+    document.getElementById( 
+        "completedPercent" 
+    ).innerText = 
+        percentage+"%"; 
+ 
+ 
+    document.getElementById( 
+        "backlogPercent" 
+    ).innerText = 
+        backlog+"%"; 
+ 
+ 
+    document.getElementById( 
+        "backlogSmall" 
+    ).innerText = 
+        backlog+"%"; 
+ 
+ 
+    document.getElementById( 
+        "missionCount" 
+    ).innerText = 
+        completed+" / "+total; 
+ 
+ 
+    document.getElementById( 
+        "progressFill" 
+    ).style.width = 
+        percentage+"%"; 
+ 
+ 
+    document.getElementById( 
+        "backlogFill" 
+    ).style.width = 
+        backlog+"%"; 
+ 
+ 
+    updateLevel(); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   DAY NUMBER 
+========================================================= */ 
+ 
+function getWorkedDates(){ 
+ 
+    return Object.keys(dailyData) 
+        .filter(key=>{ 
+ 
+            return dailyData[key] && 
+                dailyData[key].some( 
+                    mission=>mission.done 
+                ); 
+ 
+        }) 
+        .sort(); 
+ 
+} 
+ 
+ 
+function updateWorkedDayNumber(){ 
+ 
+    let currentKey = 
+        dateKey(currentDate); 
+ 
+ 
+    let workedDates = 
+        getWorkedDates(); 
+ 
+ 
+    let position = 
+        workedDates.indexOf( 
+            currentKey 
+        ); 
+ 
+ 
+    if(position!==-1){ 
+ 
+        document.getElementById( 
+            "workedDayNumber" 
+        ).innerText = 
+            "DAY "+(position+1); 
+ 
+    }else{ 
+ 
+        document.getElementById( 
+            "workedDayNumber" 
+        ).innerText = 
+            "DAY "+ 
+            (workedDates.length+1)+ 
+            " • NEXT"; 
+ 
+    } 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   XP 
+========================================================= */ 
+ 
+function updateLevel(){ 
+ 
+    let level = 
+        Math.floor( 
+            totalXP/100 
+        )+1; 
+ 
+ 
+    let xpInLevel = 
+        totalXP%100; 
+ 
+ 
+    document.getElementById( 
+        "level" 
+    ).innerText = 
+        level; 
+ 
+ 
+    document.getElementById( 
+        "totalXP" 
+    ).innerText = 
+        totalXP; 
+ 
+ 
+    document.getElementById( 
+        "xpText" 
+    ).innerText = 
+        xpInLevel+ 
+        " / 100 XP"; 
+ 
+ 
+    document.getElementById( 
+        "xpFill" 
+    ).style.width = 
+        xpInLevel+"%"; 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   DATE NAVIGATION 
+========================================================= */ 
+ 
+function changeDate(amount){ 
+ 
+    currentDate.setDate( 
+        currentDate.getDate()+amount 
+    ); 
+ 
+    renderDate(); 
+ 
+} 
+ 
+ 
+function completeAll(){ 
+ 
+    let missions = 
+        getMissions(); 
+ 
+ 
+    missions.forEach( 
+        mission=>{ 
+ 
+            if(!mission.done){ 
+ 
+                mission.done=true; 
+ 
+                totalXP+=10; 
+ 
+            } 
+ 
+        } 
+    ); 
+ 
+ 
+    saveAll(); 
+ 
+    renderMissions(); 
+ 
+} 
+ 
+ 
+function addSampleTargets(){ 
+ 
+    let samples=[ 
+ 
+        { 
+            text:"Revise Polity — Fundamental Rights", 
+            subject:"Polity" 
+        }, 
+ 
+        { 
+            text:"Economy — Inflation + PYQs", 
+            subject:"Economy" 
+        }, 
+ 
+        { 
+            text:"Solve 25 Prelims MCQs", 
+            subject:"Prelims" 
+        }, 
+ 
+        { 
+            text:"Write 2 GS answers", 
+            subject:"Answer Writing" 
+        }, 
+ 
+        { 
+            text:"Revise yesterday's notes", 
+            subject:"Revision" 
+        } 
+ 
+    ]; 
+ 
+ 
+    samples.forEach( 
+        s=>{ 
+ 
+            getMissions().push({ 
+ 
+                text:s.text, 
+ 
+                subject:s.subject, 
+ 
+                done:false 
+ 
+            }); 
+ 
+        } 
+    ); 
+ 
+ 
+    saveAll(); 
+ 
+    renderMissions(); 
+ 
+} 
+ 
+ 
+function resetDay(){ 
+ 
+    if( 
+        confirm( 
+            "Reset all targets and review for this day?" 
+        ) 
+    ){ 
+ 
+        let key = 
+            dateKey(currentDate); 
+ 
+ 
+        dataDeleteXPForDay(key); 
+ 
+        dailyData[key]=[]; 
+ 
+        delete reviews[key]; 
+ 
+ 
+        saveAll(); 
+ 
+        renderDate(); 
+ 
+    } 
+ 
+} 
+ 
+ 
+function dataDeleteXPForDay(key){ 
+ 
+    if(!dailyData[key])return; 
+ 
+ 
+    let completed = 
+        dailyData[key].filter( 
+            m=>m.done 
+        ).length; 
+ 
+ 
+    totalXP = 
+        Math.max( 
+            0, 
+            totalXP - 
+            completed*10 
+        ); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   STREAK 
+========================================================= */ 
+ 
+function calculateStreak(){ 
+ 
+    let streak=0; 
+ 
+    let date= 
+        new Date(); 
+ 
+ 
+    while(true){ 
+ 
+        let key = 
+            dateKey(date); 
+ 
+ 
+        let missions = 
+            dailyData[key]; 
+ 
+ 
+        if( 
+            missions && 
+            missions.length>0 && 
+            missions.every( 
+                m=>m.done 
+            ) 
+        ){ 
+ 
+            streak++; 
+ 
+ 
+            date.setDate( 
+                date.getDate()-1 
+            ); 
+ 
+ 
+        }else{ 
+ 
+            break; 
+ 
+        } 
+ 
+    } 
+ 
+ 
+    document.getElementById( 
+        "streak" 
+    ).innerText = 
+        streak; 
+ 
+ 
+    document.getElementById( 
+        "sideStreak" 
+    ).innerText = 
+        streak; 
+ 
+ 
+    let motivation = 
+        document.getElementById( 
+            "motivation" 
+        ); 
+ 
+ 
+    if(streak===0){ 
+ 
+        motivation.innerText = 
+            "Your next streak starts with today's first target."; 
+ 
+    } 
+    else if(streak<3){ 
+ 
+        motivation.innerText = 
+            "The mission has begun. Protect the streak."; 
+ 
+    } 
+    else if(streak<7){ 
+ 
+        motivation.innerText = 
+            "You're building consistency. Keep going."; 
+ 
+    } 
+    else if(streak<15){ 
+ 
+        motivation.innerText = 
+            "Excellent discipline. You're becoming dangerous."; 
+ 
+    } 
+    else{ 
+ 
+        motivation.innerText = 
+            "Elite consistency. Keep the chain alive."; 
+ 
+    } 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   REVIEW 
+========================================================= */ 
+ 
+function setRating(rating){ 
+ 
+    selectedRating=rating; 
+ 
+ 
+    document 
+        .querySelectorAll(".star") 
+        .forEach( 
+            (star,index)=>{ 
+ 
+                star.classList.toggle( 
+                    "active", 
+                    index<rating 
+                ); 
+ 
+            } 
+        ); 
+ 
+} 
+ 
+ 
+function saveReview(){ 
+ 
+    let key = 
+        dateKey(currentDate); 
+ 
+ 
+    reviews[key]={ 
+ 
+        rating:selectedRating, 
+ 
+        text: 
+            document.getElementById( 
+                "reviewText" 
+            ).value 
+ 
+    }; 
+ 
+ 
+    saveAll(); 
+ 
+ 
+    alert( 
+        "Daily review saved!" 
+    ); 
+ 
+} 
+ 
+ 
+function loadReview(){ 
+ 
+    let key = 
+        dateKey(currentDate); 
+ 
+ 
+    let review = 
+        reviews[key] || {}; 
+ 
+ 
+    selectedRating = 
+        review.rating || 0; 
+ 
+ 
+    document.getElementById( 
+        "reviewText" 
+    ).value = 
+        review.text || ""; 
+ 
+ 
+    setRating( 
+        selectedRating 
+    ); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   WEEKLY 
+========================================================= */ 
+ 
+function getMonday(date){ 
+ 
+    let d = 
+        cloneDate(date); 
+ 
+ 
+    let day = 
+        d.getDay(); 
+ 
+ 
+    let difference = 
+        day===0 
+        ? -6 
+        : 1-day; 
+ 
+ 
+    d.setDate( 
+        d.getDate()+difference 
+    ); 
+ 
+ 
+    d.setHours( 
+        0,0,0,0 
+    ); 
+ 
+ 
+    return d; 
+ 
+} 
+ 
+ 
+function getWeekKey(date){ 
+ 
+    return dateKey( 
+        getMonday(date) 
+    ); 
+ 
+} 
+ 
+ 
+function changeWeek(amount){ 
+ 
+    currentWeekDate.setDate( 
+        currentWeekDate.getDate()+ 
+        amount*7 
+    ); 
+ 
+ 
+    renderWeekly(); 
+ 
+} 
+ 
+ 
+function goCurrentWeek(){ 
+ 
+    currentWeekDate= 
+        new Date(); 
+ 
+ 
+    renderWeekly(); 
+ 
+} 
+ 
+ 
+function renderWeekly(){ 
+ 
+    let monday = 
+        getMonday( 
+            currentWeekDate 
+        ); 
+ 
+ 
+    let sunday = 
+        cloneDate(monday); 
+ 
+ 
+    sunday.setDate( 
+        sunday.getDate()+6 
+    ); 
+ 
+ 
+    document.getElementById( 
+        "weekRange" 
+    ).innerText = 
+        formatShortDate(monday)+ 
+        " — "+ 
+        formatShortDate(sunday); 
+ 
+ 
+    let weekDays = 
+        document.getElementById( 
+            "weekDays" 
+        ); 
+ 
+ 
+    weekDays.innerHTML=""; 
+ 
+ 
+    for(let i=0;i<7;i++){ 
+ 
+        let day = 
+            cloneDate(monday); 
+ 
+ 
+        day.setDate( 
+            day.getDate()+i 
+        ); 
+ 
+ 
+        let key = 
+            dateKey(day); 
+ 
+ 
+        let missions = 
+            dailyData[key] || []; 
+ 
+ 
+        let completed = 
+            missions.length>0 && 
+            missions.every( 
+                m=>m.done 
+            ); 
+ 
+ 
+        let isToday = 
+            key===dateKey( 
+                new Date() 
+            ); 
+ 
+ 
+        let div = 
+            document.createElement( 
+                "div" 
+            ); 
+ 
+ 
+        div.className = 
+            "week-day "+ 
+            ( 
+                completed 
+                ? "done-day " 
+                : "" 
+            )+ 
+            ( 
+                isToday 
+                ? "today-day" 
+                : "" 
+            ); 
+ 
+ 
+        div.innerHTML=` 
+ 
+            <div class="week-day-name"> 
+                ${day.toLocaleDateString( 
+                    "en-IN", 
+                    {weekday:"short"} 
+                )} 
+            </div> 
+ 
+            <div class="week-date"> 
+                ${day.getDate()} 
+            </div> 
+ 
+            <div class="week-status"> 
+                ${ 
+                    completed 
+                    ? "✓ DONE" 
+                    : missions.length 
+                    ? "IN PROGRESS" 
+                    : "—" 
+                } 
+            </div> 
+ 
+        `; 
+ 
+ 
+        div.onclick=()=>{ 
+ 
+            currentDate= 
+                cloneDate(day); 
+ 
+ 
+            document 
+                .querySelectorAll(".page") 
+                .forEach( 
+                    p=>p.classList.remove( 
+                        "active" 
+                    ) 
+                ); 
+ 
+ 
+            document 
+                .getElementById("daily") 
+                .classList.add("active"); 
+ 
+ 
+            document 
+                .querySelectorAll(".page-btn") 
+                .forEach( 
+                    b=>b.classList.remove( 
+                        "active" 
+                    ) 
+                ); 
+ 
+ 
+            document 
+                .querySelector( 
+                    ".page-btn" 
+                ) 
+                .classList.add("active"); 
+ 
+ 
+            renderDate(); 
+ 
+        }; 
+ 
+ 
+        weekDays.appendChild(div); 
+ 
+    } 
+ 
+ 
+    renderWeeklyTargets(); 
+ 
+} 
+ 
+ 
+function getWeeklyTargets(){ 
+ 
+    let key = 
+        getWeekKey( 
+            currentWeekDate 
+        ); 
+ 
+ 
+    if(!weeklyData[key]){ 
+        weeklyData[key]=[]; 
+    } 
+ 
+ 
+    return weeklyData[key]; 
+ 
+} 
+ 
+ 
+function addWeeklyTarget(){ 
+ 
+    let input = 
+        document.getElementById( 
+            "weeklyTargetInput" 
+        ); 
+ 
+ 
+    let text = 
+        input.value.trim(); 
+ 
+ 
+    if(!text)return; 
+ 
+ 
+    getWeeklyTargets().push({ 
+ 
+        text:text, 
+ 
+        done:false 
+ 
+    }); 
+ 
+ 
+    input.value=""; 
+ 
+ 
+    saveAll(); 
+ 
+    renderWeekly(); 
+ 
+} 
+ 
+ 
+function toggleWeeklyTarget(index){ 
+ 
+    let target = 
+        getWeeklyTargets()[index]; 
+ 
+ 
+    target.done = 
+        !target.done; 
+ 
+ 
+    saveAll(); 
+ 
+    renderWeekly(); 
+ 
+} 
+ 
+ 
+function deleteWeeklyTarget(index){ 
+ 
+    getWeeklyTargets() 
+        .splice(index,1); 
+ 
+ 
+    saveAll(); 
+ 
+    renderWeekly(); 
+ 
+} 
+ 
+ 
+function renderWeeklyTargets(){ 
+ 
+    let list = 
+        document.getElementById( 
+            "weeklyTargetList" 
+        ); 
+ 
+ 
+    list.innerHTML=""; 
+ 
+ 
+    let targets = 
+        getWeeklyTargets(); 
+ 
+ 
+    let completed = 
+        targets.filter( 
+            t=>t.done 
+        ).length; 
+ 
+ 
+    let percentage = 
+        targets.length 
+        ? Math.round( 
+            completed/ 
+            targets.length* 
+            100 
+        ) 
+        : 0; 
+ 
+ 
+    document.getElementById( 
+        "weeklyProgressText" 
+    ).innerText = 
+        percentage+"%"; 
+ 
+ 
+    document.getElementById( 
+        "weeklyProgressFill" 
+    ).style.width = 
+        percentage+"%"; 
+ 
+ 
+    if(targets.length===0){ 
+ 
+        list.innerHTML=` 
+        <div style=" 
+            padding:25px; 
+            text-align:center; 
+            color:#94a3b8; 
+            border:1px dashed #cbd5e1; 
+            border-radius:12px; 
+        "> 
+            No weekly targets yet. 
+        </div> 
+        `; 
+ 
+        return; 
+ 
+    } 
+ 
+ 
+    targets.forEach( 
+        (target,index)=>{ 
+ 
+            let div = 
+                document.createElement( 
+                    "div" 
+                ); 
+ 
+ 
+            div.className = 
+                "period-target "+ 
+                ( 
+                    target.done 
+                    ? "done" 
+                    : "" 
+                ); 
+ 
+ 
+            div.innerHTML=` 
+ 
+                <div 
+                    class="period-check" 
+                    onclick="toggleWeeklyTarget(${index})"> 
+                </div> 
+ 
+                <div class="target-text"> 
+                    ${escapeHTML(target.text)} 
+                </div> 
+ 
+                <div 
+                    class="period-delete" 
+                    onclick="deleteWeeklyTarget(${index})"> 
+                    × 
+                </div> 
+ 
+            `; 
+ 
+ 
+            list.appendChild(div); 
+ 
+        } 
+    ); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   MONTHLY 
+========================================================= */ 
+ 
+function getMonthKey(date){ 
+ 
+    return ( 
+        date.getFullYear()+ 
+        "-"+ 
+        String( 
+            date.getMonth()+1 
+        ).padStart(2,"0") 
+    ); 
+ 
+} 
+ 
+ 
+function changeMonth(amount){ 
+ 
+    currentMonthDate.setMonth( 
+        currentMonthDate.getMonth()+ 
+        amount 
+    ); 
+ 
+ 
+    renderMonthly(); 
+ 
+} 
+ 
+ 
+function goCurrentMonth(){ 
+ 
+    currentMonthDate= 
+        new Date(); 
+ 
+ 
+    renderMonthly(); 
+ 
+} 
+ 
+ 
+function renderMonthly(){ 
+ 
+    document.getElementById( 
+        "monthTitle" 
+    ).innerText = 
+        currentMonthDate.toLocaleDateString( 
+            "en-IN", 
+            { 
+                month:"long", 
+                year:"numeric" 
+            } 
+        ); 
+ 
+ 
+    renderCalendar( 
+        currentMonthDate.getFullYear(), 
+        currentMonthDate.getMonth() 
+    ); 
+ 
+ 
+    renderMonthlyTargets(); 
+ 
+} 
+ 
+ 
+function renderCalendar(year,month){ 
+ 
+    let calendar = 
+        document.getElementById( 
+            "calendarGrid" 
+        ); 
+ 
+ 
+    calendar.innerHTML=""; 
+ 
+ 
+    let names=[ 
+        "Mon", 
+        "Tue", 
+        "Wed", 
+        "Thu", 
+        "Fri", 
+        "Sat", 
+        "Sun" 
+    ]; 
+ 
+ 
+    names.forEach(name=>{ 
+ 
+        let heading = 
+            document.createElement( 
+                "div" 
+            ); 
+ 
+ 
+        heading.className = 
+            "calendar-heading"; 
+ 
+ 
+        heading.innerText=name; 
+ 
+ 
+        calendar.appendChild( 
+            heading 
+        ); 
+ 
+    }); 
+ 
+ 
+    let first = 
+        new Date( 
+            year, 
+            month, 
+            1 
+        ); 
+ 
+ 
+    let last = 
+        new Date( 
+            year, 
+            month+1, 
+            0 
+        ); 
+ 
+ 
+    let firstDay = 
+        first.getDay(); 
+ 
+ 
+    let offset = 
+        firstDay===0 
+        ? 6 
+        : firstDay-1; 
+ 
+ 
+    for( 
+        let i=0; 
+        i<offset; 
+        i++ 
+    ){ 
+ 
+        let empty = 
+            document.createElement( 
+                "div" 
+            ); 
+ 
+ 
+        empty.className = 
+            "calendar-day empty"; 
+ 
+ 
+        calendar.appendChild( 
+            empty 
+        ); 
+ 
+    } 
+ 
+ 
+    for( 
+        let day=1; 
+        day<=last.getDate(); 
+        day++ 
+    ){ 
+ 
+        let date = 
+            new Date( 
+                year, 
+                month, 
+                day 
+            ); 
+ 
+ 
+        let key = 
+            dateKey(date); 
+ 
+ 
+        let missions = 
+            dailyData[key] || []; 
+ 
+ 
+        let worked = 
+            missions.some( 
+                m=>m.done 
+            ); 
+ 
+ 
+        let isToday = 
+            key===dateKey( 
+                new Date() 
+            ); 
+ 
+ 
+        let div = 
+            document.createElement( 
+                "div" 
+            ); 
+ 
+ 
+        div.className = 
+            "calendar-day "+ 
+            ( 
+                worked 
+                ? "worked " 
+                : "" 
+            )+ 
+            ( 
+                isToday 
+                ? "today" 
+                : "" 
+            ); 
+ 
+ 
+        div.innerText=day; 
+ 
+ 
+        div.onclick=()=>{ 
+ 
+            currentDate= 
+                cloneDate(date); 
+ 
+ 
+            document 
+                .querySelectorAll(".page") 
+                .forEach( 
+                    p=>p.classList.remove( 
+                        "active" 
+                    ) 
+                ); 
+ 
+ 
+            document 
+                .getElementById("daily") 
+                .classList.add("active"); 
+ 
+ 
+            document 
+                .querySelectorAll(".page-btn") 
+                .forEach( 
+                    b=>b.classList.remove( 
+                        "active" 
+                    ) 
+                ); 
+ 
+ 
+            document 
+                .querySelector( 
+                    ".page-btn" 
+                ) 
+                .classList.add("active"); 
+ 
+ 
+            renderDate(); 
+ 
+        }; 
+ 
+ 
+        calendar.appendChild(div); 
+ 
+    } 
+ 
+} 
+ 
+ 
+function getMonthlyTargets(){ 
+ 
+    let key = 
+        getMonthKey( 
+            currentMonthDate 
+        ); 
+ 
+ 
+    if(!monthlyData[key]){ 
+        monthlyData[key]=[]; 
+    } 
+ 
+ 
+    return monthlyData[key]; 
+ 
+} 
+ 
+ 
+function addMonthlyTarget(){ 
+ 
+    let input = 
+        document.getElementById( 
+            "monthlyTargetInput" 
+        ); 
+ 
+ 
+    let text = 
+        input.value.trim(); 
+ 
+ 
+    if(!text)return; 
+ 
+ 
+    getMonthlyTargets().push({ 
+ 
+        text:text, 
+ 
+        done:false 
+ 
+    }); 
+ 
+ 
+    input.value=""; 
+ 
+ 
+    saveAll(); 
+ 
+    renderMonthly(); 
+ 
+} 
+ 
+ 
+function toggleMonthlyTarget(index){ 
+ 
+    let target = 
+        getMonthlyTargets()[index]; 
+ 
+ 
+    target.done = 
+        !target.done; 
+ 
+ 
+    saveAll(); 
+ 
+    renderMonthly(); 
+ 
+} 
+ 
+ 
+function deleteMonthlyTarget(index){ 
+ 
+    getMonthlyTargets() 
+        .splice(index,1); 
+ 
+ 
+    saveAll(); 
+ 
+    renderMonthly(); 
+ 
+} 
+ 
+ 
+function renderMonthlyTargets(){ 
+ 
+    let list = 
+        document.getElementById( 
+            "monthlyTargetList" 
+        ); 
+ 
+ 
+    list.innerHTML=""; 
+ 
+ 
+    let targets = 
+        getMonthlyTargets(); 
+ 
+ 
+    let completed = 
+        targets.filter( 
+            t=>t.done 
+        ).length; 
+ 
+ 
+    let percentage = 
+        targets.length 
+        ? Math.round( 
+            completed/ 
+            targets.length* 
+            100 
+        ) 
+        : 0; 
+ 
+ 
+    document.getElementById( 
+        "monthlyProgressText" 
+    ).innerText = 
+        percentage+"%"; 
+ 
+ 
+    document.getElementById( 
+        "monthlyProgressFill" 
+    ).style.width = 
+        percentage+"%"; 
+ 
+ 
+    if(targets.length===0){ 
+ 
+        list.innerHTML=` 
+        <div style=" 
+            padding:25px; 
+            text-align:center; 
+            color:#94a3b8; 
+            border:1px dashed #cbd5e1; 
+            border-radius:12px; 
+        "> 
+            No monthly targets yet. 
+        </div> 
+        `; 
+ 
+        return; 
+ 
+    } 
+ 
+ 
+    targets.forEach( 
+        (target,index)=>{ 
+ 
+            let div = 
+                document.createElement( 
+                    "div" 
+                ); 
+ 
+ 
+            div.className = 
+                "period-target "+ 
+                ( 
+                    target.done 
+                    ? "done" 
+                    : "" 
+                ); 
+ 
+ 
+            div.innerHTML=` 
+ 
+                <div 
+                    class="period-check" 
+                    onclick="toggleMonthlyTarget(${index})"> 
+                </div> 
+ 
+                <div class="target-text"> 
+                    ${escapeHTML(target.text)} 
+                </div> 
+ 
+                <div 
+                    class="period-delete" 
+                    onclick="deleteMonthlyTarget(${index})"> 
+                    × 
+                </div> 
+ 
+            `; 
+ 
+ 
+            list.appendChild(div); 
+ 
+        } 
+    ); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   PRELIMS SYLLABUS 
+========================================================= */ 
+ 
+const prelimsData={ 
+ 
+"Economy":[ 
+"Poverty and inequality", 
+"Unemployment", 
+"Basic concepts of economics", 
+"National income accounting", 
+"Inflation", 
+"Money and monetary policy", 
+"Functions of RBI", 
+"Banking", 
+"Capital markets", 
+"External sector", 
+"Government budgeting" 
+], 
+ 
+"Polity":[ 
+"Historical background", 
+"Making of the Constitution", 
+"Salient features of Constitution", 
+"Preamble of the Constitution", 
+"Union and its territory", 
+"Citizenship", 
+"Fundamental Rights", 
+"DPSPs", 
+"Fundamental Duties", 
+"Amendment of the Constitution", 
+"Basic Structure of Constitution", 
+"Parliamentary system", 
+"Federal system", 
+"Centre-State relations", 
+"Inter-State relations", 
+"Emergency provisions", 
+"President", 
+"Vice President", 
+"Prime Minister", 
+"Central Council of Ministers", 
+"Cabinet Committees", 
+"Parliament", 
+"Parliamentary Committees", 
+"Parliamentary Forums", 
+"Parliamentary Group", 
+"Supreme Court", 
+"Judicial Review", 
+"Judicial Activism", 
+"Public Interest Litigation", 
+"Governor", 
+"Chief Minister", 
+"State Council of Ministers", 
+"State Legislature", 
+"High Court", 
+"Tribunals", 
+"Subordinate Courts", 
+"Special provisions for some states", 
+"Panchayati Raj", 
+"Municipalities", 
+"Union Territories", 
+"Scheduled and Tribal Areas", 
+"Election Commission", 
+"UPSC", 
+"SPSC", 
+"Finance Commission", 
+"GST Council", 
+"National Commission for SC", 
+"National Commission for ST", 
+"National Commission for OBC", 
+"Special Officer for Linguistic Minorities", 
+"Comptroller and Auditor General of India", 
+"Attorney General of India", 
+"Advocate General of the State", 
+"NITI Aayog", 
+"National Human Rights Commission", 
+"State Human Rights Commission", 
+"Central Information Commission", 
+"State Information Commission", 
+"Central Vigilance Commission", 
+"Central Bureau of Investigation", 
+"Lokpal and Lokayuktas", 
+"National Investigation Agency", 
+"National Disaster Management Authority", 
+"Cooperative Societies", 
+"Official Language", 
+"Public Services", 
+"Rights and liabilities of government", 
+"Special provisions for certain classes", 
+"Political parties", 
+"Role of regional parties", 
+"Elections", 
+"Election laws", 
+"Electoral reforms", 
+"Voting behaviour", 
+"Coalition government", 
+"Anti-defection law", 
+"Pressure groups", 
+"National integration", 
+"Foreign policy" 
+], 
+ 
+"Geography":[ 
+"Physical Geography — Origin and evolution of the Earth", 
+"Interior of the Earth", 
+"Distribution of oceans and continents", 
+"Minerals and rocks", 
+"Geomorphic processes", 
+"Landforms and their evolution", 
+"Composition and structure of atmosphere", 
+"Solar radiation", 
+"Heat balance and temperature", 
+"Atmospheric circulation and weather systems", 
+"Water in the atmosphere", 
+"World climate and climate change", 
+"Water", 
+"Movements of ocean water", 
+"Life on the Earth", 
+"Biodiversity and conservation", 
+"Indian Geography — India: location, structure and physiography", 
+"Drainage system", 
+"Climate", 
+"Natural vegetation", 
+"Soils", 
+"Natural hazards and disasters", 
+"Human Geography — Nature and scope", 
+"World population", 
+"Population composition", 
+"Human development", 
+"Primary activities", 
+"Secondary activities", 
+"Tertiary and quaternary activities", 
+"Transport and communication", 
+"International trade", 
+"Human settlements", 
+"Economic Geography — Land resources and agriculture", 
+"Water resources", 
+"Mineral and energy resources", 
+"Manufacturing industries", 
+"Planning and sustainable development", 
+"Transport and communication", 
+"International trade", 
+"Selected issues and problems" 
+], 
+ 
+"Environment":[ 
+"Ecology", 
+"Biosphere", 
+"Functional units of ecosystem", 
+"Biogeochemical cycles", 
+"Biodiversity and conservation", 
+"Wetlands", 
+"Environmental Acts", 
+"Climate change", 
+"Pollution" 
+], 
+ 
+"Ancient History":[ 
+"Stone Age", 
+"Indus Valley Civilisation", 
+"Vedic Age", 
+"Janapadas and Mahajanapadas", 
+"Foreign invasions before Mauryan Empire", 
+"Philosophy", 
+"Buddhism", 
+"Jainism", 
+"Mauryan Empire", 
+"Post-Mauryas", 
+"Sangam Age", 
+"Gupta Empire", 
+"Vakatakas", 
+"Vardhana Dynasty" 
+], 
+ 
+"Medieval History":[ 
+"Early Medieval India", 
+"Gurjara-Pratiharas", 
+"Rashtrakutas", 
+"Delhi Sultanates", 
+"Mughal Empire", 
+"Vijayanagara Empire", 
+"Bahmani Sultans", 
+"Bhakti Movement", 
+"Temple Architecture" 
+], 
+ 
+"Modern History":[ 
+"Later Mughals", 
+"Advent of Europeans", 
+"Carnatic Wars", 
+"Rise of British supremacy", 
+"Anglo-Maratha Wars", 
+"Annexation of Punjab and Sindh", 
+"Anglo-Mysore Wars", 
+"Annexation of frontier states", 
+"Constitutional development", 
+"Economic impact of British rule", 
+"Revolt of 1857", 
+"People's resistance against British rule", 
+"Socio-religious reform movements", 
+"Formation of INC", 
+"Indian National Movement", 
+"Indian national struggle", 
+"Gandhi before 1915", 
+"First World War", 
+"Khilafat and Non-Cooperation Movement", 
+"Post-CDM", 
+"Indian Independence" 
+], 
+ 
+"Science & Technology":[ 
+"Cell", 
+"Biotechnology", 
+"Health", 
+"Nanotechnology", 
+"Quantum computing", 
+"Space technology", 
+"Defence technology", 
+"FinTech", 
+"IT", 
+"Computers and emerging technologies" 
+], 
+ 
+"CSAT":[ 
+"CSAT — Complete syllabus" 
+], 
+ 
+"Current Affairs":[ 
+"June 2026 Current Affairs", 
+"July 2026 Current Affairs", 
+"August 2026 Current Affairs", 
+"September 2026 Current Affairs", 
+"October 2026 Current Affairs", 
+"November 2026 Current Affairs", 
+"December 2026 Current Affairs", 
+"January 2027 Current Affairs", 
+"February 2027 Current Affairs", 
+"March 2027 Current Affairs", 
+"April 2027 Current Affairs", 
+"May 2027 Current Affairs" 
+] 
+ 
+}; 
+ 
+ 
+/* ========================================================= 
+   MAINS SYLLABUS 
+========================================================= */ 
+ 
+const mainsData={ 
+ 
+"GS 1 — Indian Heritage, Culture, History, Geography & Society":[ 
+ 
+"Indian Culture — Salient aspects of Art Forms, Literature and Architecture from ancient to modern times.", 
+ 
+"Modern Indian History from about the middle of the eighteenth century until the present — significant events, personalities, issues.", 
+ 
+"The Freedom Struggle — its various stages and important contributors/contributions from different parts of the country.", 
+ 
+"Post-independence Consolidation and Reorganization within the country.", 
+ 
+"World History — events from the 18th century such as Industrial Revolution, World Wars, Redrawal of National Boundaries, Colonization, Decolonization, Communism, Capitalism, Socialism and their forms and effect on society.", 
+ 
+"Salient features of Indian Society; Diversity of India.", 
+ 
+"Role of Women and Women's Organizations; Population and associated issues; Poverty and developmental issues; Urbanization, their problems and remedies.", 
+ 
+"Effects of Globalization on Indian society.", 
+ 
+"Social Empowerment, Communalism, Regionalism & Secularism.", 
+ 
+"Salient features of World's Physical Geography.", 
+ 
+"Distribution of Key Natural Resources across the world including South Asia and Indian sub-continent; factors responsible for location of primary, secondary and tertiary sector industries.", 
+ 
+"Important Geophysical Phenomena such as earthquakes, Tsunami, Volcanic activity, cyclone etc.; geographical features and their location; changes in critical geographical features, water-bodies, ice-caps, flora and fauna and effects of such changes." 
+ 
+], 
+ 
+ 
+"GS 2 — Governance, Constitution, Polity, Social Justice & International Relations":[ 
+ 
+"Indian Constitution — Historical Underpinnings, Evolution, Features, Amendments, Significant Provisions and Basic Structure.", 
+ 
+"Functions and Responsibilities of the Union and the States; Federal Structure; devolution of powers and finances up to local levels.", 
+ 
+"Separation of Powers between various organs; Dispute Redressal Mechanisms and Institutions.", 
+ 
+"Comparison of the Indian Constitutional Scheme with that of Other Countries.", 
+ 
+"Parliament and State Legislatures — Structure, Functioning, Conduct of Business, Powers & Privileges and Issues Arising out of these.", 
+ 
+"Structure, Organization and Functioning of the Executive and Judiciary; Ministries and Departments; Pressure Groups and Formal/Informal Associations.", 
+ 
+"Salient Features of the Representation of People's Act.", 
+ 
+"Appointment to Constitutional Posts; Powers, Functions and Responsibilities of Constitutional Bodies.", 
+ 
+"Statutory, Regulatory and various Quasi-judicial Bodies.", 
+ 
+"Government Policies and Interventions for Development in various sectors and issues arising from their Design and Implementation.", 
+ 
+"Development Processes and Development Industry — NGOs, SHGs, groups and associations, donors, charities and other stakeholders.", 
+ 
+"Welfare Schemes for Vulnerable Sections; mechanisms, laws, institutions and bodies for their protection and betterment.", 
+ 
+"Issues relating to Development and Management of Social Sector/Services relating to Health, Education and Human Resources.", 
+ 
+"Issues relating to Poverty and Hunger.", 
+ 
+"Governance, Transparency and Accountability; E-governance; Citizens Charters; Transparency & Accountability and institutional measures.", 
+ 
+"Role of Civil Services in a Democracy.", 
+ 
+"India and its Neighborhood — Relations.", 
+ 
+"Bilateral, Regional and Global Groupings and Agreements involving India and/or affecting India's interests.", 
+ 
+"Effect of Policies and Politics of Developed and Developing Countries on India's interests; Indian Diaspora.", 
+ 
+"Important International Institutions, agencies and fora — Structure and Mandate." 
+ 
+], 
+ 
+ 
+"GS 3 — Technology, Economy, Biodiversity, Environment, Security & Disaster Management":[ 
+ 
+"Indian Economy — Planning, Mobilization of Resources, Growth, Development and Employment.", 
+ 
+"Inclusive Growth and issues arising from it.", 
+ 
+"Government Budgeting.", 
+ 
+"Major Crops — Cropping Patterns; Irrigation and Irrigation Systems; Storage, Transport and Marketing of Agricultural Produce; E-technology in aid of farmers.", 
+ 
+"Direct and Indirect Farm Subsidies and Minimum Support Prices; Public Distribution System; Buffer Stocks; Food Security; Technology Missions; Economics of Animal-Rearing.", 
+ 
+"Food Processing and Related Industries in India — Scope, Significance, Location, Upstream and Downstream Requirements, Supply Chain Management.", 
+ 
+"Land Reforms in India.", 
+ 
+"Effects of Liberalization on the Economy; Changes in Industrial Policy and their Effects on Industrial Growth.", 
+ 
+"Infrastructure — Energy, Ports, Roads, Airports, Railways etc.", 
+ 
+"Investment Models.", 
+ 
+"Science and Technology — Developments, Applications and Effects in Everyday Life.", 
+ 
+"Achievements of Indians in Science & Technology; Indigenization of Technology and Developing New Technology.", 
+ 
+"IT, Space, Computers, Robotics, Nano-technology, Bio-technology and Intellectual Property Rights.", 
+ 
+"Conservation, Environmental Pollution and Degradation, Environmental Impact Assessment.", 
+ 
+"Disaster and Disaster Management.", 
+ 
+"Linkages between Development and Spread of Extremism.", 
+ 
+"Role of External State and Non-state Actors in creating challenges to Internal Security.", 
+ 
+"Communication Networks, Media, Social Networking Sites, Cyber Security, Money-Laundering and its prevention.", 
+ 
+"Security Challenges and Management in Border Areas; Linkages of Organized Crime with Terrorism.", 
+ 
+"Various Security Forces and Agencies and their Mandate." 
+ 
+], 
+ 
+ 
+"GS 4 — Ethics, Integrity & Aptitude":[ 
+ 
+"Ethics and Human Interface — Essence, Determinants and Consequences of Ethics in Human Actions; Dimensions of Ethics; Ethics in Private and Public Relationships.", 
+ 
+"Human Values — Lessons from lives and teachings of Great Leaders, Reformers and Administrators; Role of Family, Society and Educational Institutions in inculcating values.", 
+ 
+"Attitude — Content, Structure, Function; Influence and Relation with Thought and Behaviour; Moral and Political Attitudes; Social Influence and Persuasion.", 
+ 
+"Aptitude and Foundational Values for Civil Service — Integrity, Impartiality, Non-partisanship, Objectivity, Dedication to Public Service, Empathy, Tolerance and Compassion.", 
+ 
+"Emotional Intelligence — Concepts, Utilities and Application in Administration and Governance.", 
+ 
+"Contributions of Moral Thinkers and Philosophers from India and World.", 
+ 
+"Public/Civil Service Values and Ethics in Public Administration — Status and Problems; Ethical Concerns and Dilemmas.", 
+ 
+"Laws, Rules, Regulations and Conscience as Sources of Ethical Guidance.", 
+ 
+"Accountability and Ethical Governance; Strengthening Ethical and Moral Values in Governance.", 
+ 
+"Ethical Issues in International Relations and Funding; Corporate Governance.", 
+ 
+"Probity in Governance — Concept of Public Service; Philosophical Basis of Governance and Probity.", 
+ 
+"Information Sharing and Transparency in Government; Right to Information.", 
+ 
+"Codes of Ethics; Codes of Conduct; Citizen's Charters.", 
+ 
+"Work Culture; Quality of Service Delivery.", 
+ 
+"Utilization of Public Funds; Challenges of Corruption.", 
+ 
+"Case Studies on the above issues." 
+ 
+] 
+ 
+}; 
+ 
+ 
+/* ========================================================= 
+   SOCIOLOGY SYLLABUS 
+========================================================= */ 
+ 
+const sociologyData={ 
+ 
+"Paper I — Fundamentals of Sociology":[ 
+ 
+"Sociology - The Discipline: Modernity and social changes in Europe and emergence of Sociology.", 
+ 
+"Sociology - The Discipline: Scope of the subject and comparison with other social sciences.", 
+ 
+"Sociology - The Discipline: Sociology and common sense.", 
+ 
+"Sociology as Science: Science, scientific method, and critique.", 
+ 
+"Sociology as Science: Major theoretical strands of research methodology.", 
+ 
+"Sociology as Science: Positivism and its critique.", 
+ 
+"Sociology as Science: Fact value and objectivity.", 
+ 
+"Sociology as Science: Non-positivist methodologies.", 
+ 
+"Research Methods and Analysis: Qualitative and quantitative methods.", 
+ 
+"Research Methods and Analysis: Techniques of data collection.", 
+ 
+"Research Methods and Analysis: Variables, sampling, hypothesis, reliability, and validity.", 
+ 
+"Sociological Thinkers: Karl Marx - Historical materialism, mode of production, alienation, class struggle.", 
+ 
+"Sociological Thinkers: Emile Durkheim - Division of labour, social fact, suicide, religion and society.", 
+ 
+"Sociological Thinkers: Max Weber - Social action, ideal types, authority, bureaucracy, protestant ethic and the spirit of capitalism.", 
+ 
+"Sociological Thinkers: Talcott Parsons - Social system, pattern variables.", 
+ 
+"Sociological Thinkers: Robert K. Merton - Latent and manifest functions, conformity and deviance, reference groups.", 
+ 
+"Sociological Thinkers: Mead - Self and identity.", 
+ 
+"Stratification and Mobility: Concepts - equality, inequality, hierarchy, exclusion, poverty, and deprivation.", 
+ 
+"Stratification and Mobility: Theories of social stratification - Structural functionalist theory, Marxist theory, Weberian theory.", 
+ 
+"Stratification and Mobility: Dimensions - Social stratification of class, status groups, gender, ethnicity and race.", 
+ 
+"Stratification and Mobility: Social mobility - open and closed systems, types of mobility, sources and causes of mobility.", 
+ 
+"Works and Economic Life: Social organization of work in different types of society - slave society, feudal society, industrial capitalist society.", 
+ 
+"Works and Economic Life: Formal and informal organization of work.", 
+ 
+"Works and Economic Life: Labour and society.", 
+ 
+"Politics and Society: Sociological theories of power.", 
+ 
+"Politics and Society: Power elite, bureaucracy, pressure groups and political parties.", 
+ 
+"Politics and Society: Nation, state, citizenship, democracy, civil society, ideology.", 
+ 
+"Politics and Society: Protest, agitation, social movements, collective action, revolution.", 
+ 
+"Religion and Society: Sociological theories of religion.", 
+ 
+"Religion and Society: Types of religious practices - animism, monism, pluralism, sects, cults.", 
+ 
+"Religion and Society: Religion in modern society - religion and science, secularization, religious revivalism, fundamentalism.", 
+ 
+"Systems of Kinship: Family, household, marriage.", 
+ 
+"Systems of Kinship: Types and forms of family.", 
+ 
+"Systems of Kinship: Lineage and descent.", 
+ 
+"Systems of Kinship: Patriarchy and sexual division of labour.", 
+ 
+"Systems of Kinship: Contemporary trends.", 
+ 
+"Social Change in Modern Society: Sociological theories of social change.", 
+ 
+"Social Change in Modern Society: Development and dependency.", 
+ 
+"Social Change in Modern Society: Agents of social change.", 
+ 
+"Social Change in Modern Society: Education and social change.", 
+ 
+"Social Change in Modern Society: Science, technology, and social change." 
+ 
+], 
+ 
+ 
+"Paper II — Indian Society: Structure and Change":[ 
+ 
+"Perspectives on the Study of Indian Society: Indology (G. S. Ghurye).", 
+ 
+"Perspectives on the Study of Indian Society: Structural functionalism (M. N. Srinivas).", 
+ 
+"Perspectives on the Study of Indian Society: Marxist sociology (A. R. Desai).", 
+ 
+"Impact of colonial rule on Indian society: Social background of Indian nationalism.", 
+ 
+"Impact of colonial rule on Indian society: Modernization of Indian tradition.", 
+ 
+"Impact of colonial rule on Indian society: Protests and movements during the colonial period.", 
+ 
+"Impact of colonial rule on Indian society: Social reforms.", 
+ 
+"Rural and Agrarian Social Structure: The idea of Indian village and village studies.", 
+ 
+"Rural and Agrarian Social Structure: Agrarian social structure — evolution of land tenure system, land reforms.", 
+ 
+"Caste System: Perspectives on the study of caste systems - G. S. Ghurye, M. N. Srinivas, Louis Dumont, Andre Beteille.", 
+ 
+"Caste System: Features of caste system.", 
+ 
+"Caste System: Untouchability - forms and perspectives.", 
+ 
+"Tribal Communities in India: Definitional problems.", 
+ 
+"Tribal Communities in India: Geographical spread.", 
+ 
+"Tribal Communities in India: Colonial policies and tribes.", 
+ 
+"Tribal Communities in India: Issues of integration and autonomy.", 
+ 
+"Social Classes in India: Agrarian class structure.", 
+ 
+"Social Classes in India: Industrial class structure.", 
+ 
+"Social Classes in India: Middle classes in India.", 
+ 
+"Systems of Kinship in India: Lineage and descent in India.", 
+ 
+"Systems of Kinship in India: Types of kinship systems.", 
+ 
+"Systems of Kinship in India: Family and marriage in India.", 
+ 
+"Systems of Kinship in India: Household dimensions of the family.", 
+ 
+"Systems of Kinship in India: Patriarchy, entitlements, and sexual division of labour.", 
+ 
+"Religion and Society: Religious communities in India.", 
+ 
+"Religion and Society: Problems of religious minorities.", 
+ 
+"Visions of Social Change in India: Idea of development planning and mixed economy.", 
+ 
+"Visions of Social Change in India: Constitution, law, and social change.", 
+ 
+"Visions of Social Change in India: Education and social change.", 
+ 
+"Rural and Agrarian Transformation in India: Programmes of rural development, Community Development Programme, cooperatives, poverty alleviation schemes.", 
+ 
+"Rural and Agrarian Transformation in India: Green revolution and social change.", 
+ 
+"Rural and Agrarian Transformation in India: Changing modes of production in Indian agriculture.", 
+ 
+"Rural and Agrarian Transformation in India: Problems of rural labour, bondage, migration.", 
+ 
+"Industrialization and Urbanisation in India: Evolution of modern industry in India.", 
+ 
+"Industrialization and Urbanisation in India: Growth of urban settlements in India.", 
+ 
+"Industrialization and Urbanisation in India: Working class - structure, growth, class mobilization.", 
+ 
+"Industrialization and Urbanisation in India: Informal sector, child labour.", 
+ 
+"Industrialization and Urbanisation in India: Slums and deprivation in urban areas.", 
+ 
+"Politics and Society: Nation, democracy and citizenship.", 
+ 
+"Politics and Society: Political parties, pressure groups, social and political elite.", 
+ 
+"Politics and Society: Regionalism and decentralization of power.", 
+ 
+"Politics and Society: Secularization.", 
+ 
+"Social Movements in Modern India: Peasants and farmers' movements.", 
+ 
+"Social Movements in Modern India: Women's movement.", 
+ 
+"Social Movements in Modern India: Backward classes & Dalit movements.", 
+ 
+"Social Movements in Modern India: Environmental movements.", 
+ 
+"Social Movements in Modern India: Ethnicity and Identity movements.", 
+ 
+"Population Dynamics: Population size, growth, composition and distribution.", 
+ 
+"Population Dynamics: Components of population growth - birth, death, migration.", 
+ 
+"Population Dynamics: Population Policy and family planning.", 
+ 
+"Population Dynamics: Emerging issues - ageing, sex ratios, child and infant mortality, reproductive health.", 
+ 
+"Challenges of Social Transformation: Crisis of development - displacement, environmental problems and sustainability.", 
+ 
+"Challenges of Social Transformation: Poverty, deprivation and inequalities.", 
+ 
+"Challenges of Social Transformation: Violence against women.", 
+ 
+"Challenges of Social Transformation: Caste conflicts.", 
+ 
+"Challenges of Social Transformation: Ethnic conflicts, communalism, religious revivalism.", 
+ 
+"Challenges of Social Transformation: Illiteracy and disparities in education." 
+ 
+] 
+ 
+}; 
+ 
+ 
+/* ========================================================= 
+   SYLLABUS PROGRESS STORAGE 
+========================================================= */ 
+ 
+let syllabusProgress = 
+    JSON.parse( 
+        localStorage.getItem( 
+            "UPSC_SYLLABUS_PROGRESS" 
+        ) 
+    ) || { 
+        prelims:{}, 
+        mains:{}, 
+        sociology:{} 
+    }; 
+ 
+ 
+/* 
+   Ensures Sociology is added even if an older 
+   localStorage version already exists. 
+*/ 
+ 
+if(!syllabusProgress.sociology){ 
+    syllabusProgress.sociology={}; 
+} 
+ 
+ 
+if(!syllabusProgress.prelims){ 
+    syllabusProgress.prelims={}; 
+} 
+ 
+ 
+if(!syllabusProgress.mains){ 
+    syllabusProgress.mains={}; 
+} 
+ 
+ 
+function topicKey( 
+    page, 
+    subject, 
+    index 
+){ 
+ 
+    return ( 
+        page+ 
+        "|"+ 
+        subject+ 
+        "|"+ 
+        index 
+    ); 
+ 
+} 
+ 
+ 
+function saveSyllabus(){ 
+ 
+    localStorage.setItem( 
+        "UPSC_SYLLABUS_PROGRESS", 
+        JSON.stringify( 
+            syllabusProgress 
+        ) 
+    ); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   RENDER TRACKER 
+========================================================= */ 
+ 
+function renderTracker(page){ 
+ 
+    const syllabus = 
+        page==="prelims" 
+        ? prelimsData 
+        : page==="mains" 
+        ? mainsData 
+        : sociologyData; 
+ 
+ 
+    const grid = 
+        document.getElementById( 
+            page+"Grid" 
+        ); 
+ 
+ 
+    grid.innerHTML=""; 
+ 
+ 
+    Object.entries( 
+        syllabus 
+    ).forEach( 
+        ([subject,topics])=>{ 
+ 
+            let completed=0; 
+ 
+ 
+            topics.forEach( 
+                (_,index)=>{ 
+ 
+                    if( 
+                        syllabusProgress[page][ 
+                            topicKey( 
+                                page, 
+                                subject, 
+                                index 
+                            ) 
+                        ] 
+                    ){ 
+ 
+                        completed++; 
+ 
+                    } 
+ 
+                } 
+            ); 
+ 
+ 
+            const percentage = 
+                topics.length 
+                ? Math.round( 
+                    completed/ 
+                    topics.length* 
+                    100 
+                ) 
+                : 0; 
+ 
+ 
+            const card = 
+                document.createElement( 
+                    "div" 
+                ); 
+ 
+ 
+            card.className= 
+                "subject-card"; 
+ 
+ 
+            card.innerHTML=` 
+ 
+                <div class="subject-header"> 
+ 
+                    <h2> 
+                        ${safeText(subject)} 
+                    </h2> 
+ 
+                    <div class="subject-meta"> 
+ 
+                        ${completed} 
+                        / 
+                        ${topics.length} 
+                        completed 
+                        • 
+                        ${percentage}% 
+ 
+                    </div> 
+ 
+                    <div class="subject-progress"> 
+ 
+                        <span 
+                            style="width:${percentage}%"> 
+                        </span> 
+ 
+                    </div> 
+ 
+                </div> 
+ 
+                <div class="topic-list"></div> 
+            `; 
+ 
+ 
+            const list = 
+                card.querySelector( 
+                    ".topic-list" 
+                ); 
+ 
+ 
+            topics.forEach( 
+                (topic,index)=>{ 
+ 
+                    const key = 
+                        topicKey( 
+                            page, 
+                            subject, 
+                            index 
+                        ); 
+ 
+ 
+                    const checked = 
+                        !!syllabusProgress[ 
+                            page 
+                        ][key]; 
+ 
+ 
+                    const row = 
+                        document.createElement( 
+                            "div" 
+                        ); 
+ 
+ 
+                    row.className = 
+                        "topic "+ 
+                        ( 
+                            checked 
+                            ? "completed" 
+                            : "" 
+                        ); 
+ 
+ 
+                    const id = 
+                        page+ 
+                        "_" + 
+                        index+ 
+                        "_" + 
+                        Math.random() 
+                            .toString(36) 
+                            .substring(2); 
+ 
+ 
+                    row.innerHTML=` 
+ 
+                        <input 
+                            type="checkbox" 
+                            id="${id}" 
+                            ${checked 
+                                ? "checked" 
+                                : "" 
+                            } 
+                        > 
+ 
+                        <label for="${id}"> 
+                            ${safeText(topic)} 
+                        </label> 
+ 
+                    `; 
+ 
+ 
+                    const checkbox = 
+                        row.querySelector( 
+                            "input" 
+                        ); 
+ 
+ 
+                    checkbox.addEventListener( 
+                        "change", 
+                        function(){ 
+ 
+                            syllabusProgress[ 
+                                page 
+                            ][key]= 
+                                this.checked; 
+ 
+ 
+                            saveSyllabus(); 
+ 
+ 
+                            renderTracker( 
+                                page 
+                            ); 
+ 
+                        } 
+                    ); 
+ 
+ 
+                    list.appendChild(row); 
+ 
+                } 
+            ); 
+ 
+ 
+            grid.appendChild(card); 
+ 
+        } 
+    ); 
+ 
+ 
+    updateTrackerStats(page); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   TRACKER STATS 
+========================================================= */ 
+ 
+function updateTrackerStats(page){ 
+ 
+    const syllabus = 
+        page==="prelims" 
+        ? prelimsData 
+        : page==="mains" 
+        ? mainsData 
+        : sociologyData; 
+ 
+ 
+    let total=0; 
+ 
+    let completed=0; 
+ 
+ 
+    Object.entries( 
+        syllabus 
+    ).forEach( 
+        ([subject,topics])=>{ 
+ 
+            total+=topics.length; 
+ 
+ 
+            topics.forEach( 
+                (_,index)=>{ 
+ 
+                    if( 
+                        syllabusProgress[page][ 
+                            topicKey( 
+                                page, 
+                                subject, 
+                                index 
+                            ) 
+                        ] 
+                    ){ 
+ 
+                        completed++; 
+ 
+                    } 
+ 
+                } 
+            ); 
+ 
+        } 
+    ); 
+ 
+ 
+    const percentage = 
+        total 
+        ? Math.round( 
+            completed/ 
+            total* 
+            100 
+        ) 
+        : 0; 
+ 
+ 
+    document.getElementById( 
+        page+"Percent" 
+    ).textContent= 
+        percentage+"%"; 
+ 
+ 
+    document.getElementById( 
+        page+"Progress" 
+    ).style.width= 
+        percentage+"%"; 
+ 
+ 
+    document.getElementById( 
+        page+"Completed" 
+    ).textContent= 
+        completed; 
+ 
+ 
+    document.getElementById( 
+        page+"Remaining" 
+    ).textContent= 
+        total-completed; 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   TRACKER SEARCH 
+========================================================= */ 
+ 
+function filterTracker(page){ 
+ 
+    const search = 
+        document 
+        .getElementById( 
+            page+"Search" 
+        ) 
+        .value 
+        .toLowerCase(); 
+ 
+ 
+    document 
+        .querySelectorAll( 
+            "#"+ 
+            page+ 
+            "Grid .subject-card" 
+        ) 
+        .forEach(card=>{ 
+ 
+            const text = 
+                card.innerText 
+                .toLowerCase(); 
+ 
+ 
+            card.style.display = 
+                text.includes(search) 
+                ? "" 
+                : "none"; 
+ 
+        }); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   MARK ALL TRACKER 
+========================================================= */ 
+ 
+function markAllTracker(page){ 
+ 
+    const syllabus = 
+        page==="prelims" 
+        ? prelimsData 
+        : page==="mains" 
+        ? mainsData 
+        : sociologyData; 
+ 
+ 
+    Object.entries( 
+        syllabus 
+    ).forEach( 
+        ([subject,topics])=>{ 
+ 
+            topics.forEach( 
+                (_,index)=>{ 
+ 
+                    syllabusProgress[ 
+                        page 
+                    ][ 
+                        topicKey( 
+                            page, 
+                            subject, 
+                            index 
+                        ) 
+                    ]=true; 
+ 
+                } 
+            ); 
+ 
+        } 
+    ); 
+ 
+ 
+    saveSyllabus(); 
+ 
+    renderTracker(page); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   RESET TRACKER 
+========================================================= */ 
+ 
+function resetTracker(page){ 
+ 
+    const pageName = 
+        page==="prelims" 
+        ? "PRELIMS" 
+        : page==="mains" 
+        ? "MAINS" 
+        : "SOCIOLOGY"; 
+ 
+ 
+    const answer = 
+        confirm( 
+            "Are you sure you want to reset all "+ 
+            pageName+ 
+            " syllabus progress?" 
+        ); 
+ 
+ 
+    if(!answer)return; 
+ 
+ 
+    syllabusProgress[page]={}; 
+ 
+ 
+    saveSyllabus(); 
+ 
+    renderTracker(page); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   SAVE EVERYTHING 
+========================================================= */ 
+ 
+function saveAll(){ 
+ 
+    localStorage.setItem( 
+        "UPSC_DAILY_DATA", 
+        JSON.stringify( 
+            dailyData 
+        ) 
+    ); 
+ 
+ 
+    localStorage.setItem( 
+        "UPSC_WEEKLY_DATA", 
+        JSON.stringify( 
+            weeklyData 
+        ) 
+    ); 
+ 
+ 
+    localStorage.setItem( 
+        "UPSC_MONTHLY_DATA", 
+        JSON.stringify( 
+            monthlyData 
+        ) 
+    ); 
+ 
+ 
+    localStorage.setItem( 
+        "UPSC_REVIEWS", 
+        JSON.stringify( 
+            reviews 
+        ) 
+    ); 
+ 
+ 
+    localStorage.setItem( 
+        "UPSC_TOTAL_XP", 
+        totalXP 
+    ); 
+ 
+ 
+    calculateStreak(); 
+ 
+    updateWorkedDayNumber(); 
+ 
+    updateLevel(); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   SECURITY 
+========================================================= */ 
+ 
+function escapeHTML(text){ 
+ 
+    return text 
+        .replace(/&/g,"&amp;") 
+        .replace(/</g,"&lt;") 
+        .replace(/>/g,"&gt;") 
+        .replace(/"/g,"&quot;") 
+        .replace(/'/g,"&#039;"); 
+ 
+} 
+ 
+ 
+function safeText(text){ 
+ 
+    return text 
+        .replace(/&/g,"&amp;") 
+        .replace(/</g,"&lt;") 
+        .replace(/>/g,"&gt;") 
+        .replace(/"/g,"&quot;") 
+        .replace(/'/g,"&#039;"); 
+ 
+} 
+ 
+ 
+/* ========================================================= 
+   INITIAL LOAD 
+========================================================= */ 
+ 
+renderDate(); 
+ 
+calculateStreak(); 
+ 
+updateLevel(); 
+ 
+renderWeekly(); 
+ 
+renderMonthly(); 
+ 
+renderTracker("prelims"); 
+ 
+renderTracker("mains"); 
+ 
+renderTracker("sociology"); 
+ 
+</script> 
+ 
+</body> 
+</html>
